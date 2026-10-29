@@ -32,6 +32,7 @@ import {
   SystemHealthView,
   TeamAccessControlView,
 } from './components/views/GovernanceSystemViews';
+import { LanSecurityView } from './components/views/LanSecurityView';
 
 export function App() {
   const [activeSection, setActiveSection] = useState<NavSectionId>('overview');
@@ -54,7 +55,7 @@ export function App() {
       setSession(sess);
       setOverviewData(ov);
     } catch (err: any) {
-      setError(err.message || 'Failed to load Baron Nexus platform data.');
+      setError(err.message || 'تعذر تحميل بيانات منصة بارون نيكسوس.');
     } finally {
       setLoading(false);
     }
@@ -64,7 +65,6 @@ export function App() {
     loadData(selectedProjectId);
   }, [selectedProjectId, loadData]);
 
-  // Global keyboard shortcut Cmd/Ctrl + K for Command Palette
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -95,14 +95,14 @@ export function App() {
     NAVIGATION_SECTIONS.find((s) => s.id === activeSection) ?? NAVIGATION_SECTIONS[0];
 
   const groups = [
-    'Core Operations',
-    'Intelligence & Exposure',
-    'Defense & Validation',
-    'Governance & Platform',
+    'العمليات الأساسية',
+    'الاستخبارات ومسارات الهجوم',
+    'الدفاع والتحقق الأمني',
+    'الحوكمة وإدارة المنصة',
   ] as const;
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col">
+    <div dir="rtl" className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col">
       {/* Top Bar following the strict 3-zone SaaS Dashboard Top Bar Contract */}
       <header className="h-14 border-b border-slate-800/90 bg-[#090D16] px-4 lg:px-6 flex items-center justify-between gap-4 sticky top-0 z-30">
         {/* Zone 1: Single-line Brand Title + Breadcrumb */}
@@ -110,13 +110,13 @@ export function App() {
           <button
             type="button"
             onClick={() => setSidebarCollapsed((c) => !c)}
-            aria-label="Toggle Navigation Sidebar"
-            className="px-2 py-1 text-xs font-mono text-slate-400 hover:text-slate-100 bg-slate-900 border border-slate-800 rounded"
+            aria-label="طي أو توسيع القائمة الجانبية"
+            className="px-2.5 py-1 text-xs font-medium text-slate-300 hover:text-slate-100 bg-slate-900 border border-slate-800 rounded"
           >
-            {sidebarCollapsed ? 'Expand' : 'Menu'}
+            {sidebarCollapsed ? 'القائمة' : 'إخفاء القائمة'}
           </button>
           <span className="text-base font-bold tracking-tight text-slate-100">
-            BARON NEXUS
+            بارون نيكسوس
           </span>
           <span aria-hidden="true" className="text-slate-600 hidden sm:inline">
             /
@@ -137,13 +137,13 @@ export function App() {
           {overviewData && (
             <div className="flex items-center gap-2 min-w-0">
               <label htmlFor="top-project-select" className="text-xs text-slate-400 whitespace-nowrap">
-                Project:
+                المشروع النشط:
               </label>
               <select
                 id="top-project-select"
                 value={selectedProjectId}
                 onChange={(e) => setSelectedProjectId(e.target.value)}
-                className="px-2.5 py-1 text-xs font-mono bg-[#0F1523] border border-slate-800 rounded text-slate-100 max-w-[260px] truncate"
+                className="px-2.5 py-1 text-xs font-mono bg-[#0F1523] border border-slate-800 rounded text-slate-100 max-w-[250px] truncate"
               >
                 {overviewData.projects.map((p) => (
                   <option key={p.id} value={p.id}>
@@ -156,9 +156,9 @@ export function App() {
           <button
             type="button"
             onClick={() => setIsCommandPaletteOpen(true)}
-            className="px-3 py-1 text-xs text-slate-400 hover:text-slate-200 bg-[#0F1523] border border-slate-800 rounded-md whitespace-nowrap shrink-0 font-mono"
+            className="px-3 py-1 text-xs text-slate-300 hover:text-slate-100 bg-[#0F1523] border border-slate-800 rounded-md whitespace-nowrap shrink-0"
           >
-            Command Palette (Ctrl+K)
+            لوحة الأوامر (Ctrl+K)
           </button>
         </div>
 
@@ -178,7 +178,7 @@ export function App() {
             onClick={() => setIsScopeModalOpen(true)}
             className="px-3.5 py-1.5 text-xs font-medium text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-md transition-colors whitespace-nowrap shrink-0"
           >
-            Scope Registry
+            سجل النطاق المصرح
           </button>
         </div>
       </header>
@@ -187,8 +187,8 @@ export function App() {
       {overviewData?.emergencyStopActive && (
         <div className="bg-rose-950/90 border-b border-rose-700 px-6 py-2.5 flex items-center justify-between text-xs text-rose-100">
           <div>
-            <span className="font-semibold">GLOBAL EMERGENCY STOP ENGAGED:</span>{' '}
-            {overviewData.emergencyStopReason || 'All active assessment jobs are halted.'}
+            <span className="font-semibold">تم تفعيل الإيقاف الطارئ الشامل:</span>{' '}
+            {overviewData.emergencyStopReason || 'تم إيقاف جميع مهام التقييم الأمني الجارية فوراً.'}
           </div>
           <button
             type="button"
@@ -198,18 +198,18 @@ export function App() {
             }}
             className="px-3 py-1 bg-rose-700 hover:bg-rose-600 text-white rounded font-medium"
           >
-            Restore Operations
+            استعادة التشغيل الطبيعي
           </button>
         </div>
       )}
 
       {/* Main Workspace Body */}
       <div className="flex-1 flex min-h-0">
-        {/* Left Navigation Sidebar (All 19 Mandatory Sections) */}
+        {/* Right Navigation Sidebar in RTL (All 19 Mandatory Sections) */}
         <aside
-          aria-label="Primary Platform Navigation"
+          aria-label="القائمة الرئيسية للمنصة"
           className={`${
-            sidebarCollapsed ? 'w-0 overflow-hidden border-r-0' : 'w-64 border-r border-slate-800/80'
+            sidebarCollapsed ? 'w-0 overflow-hidden border-l-0' : 'w-64 border-l border-slate-800/80'
           } bg-[#090D16] shrink-0 transition-all duration-150 flex flex-col justify-between`}
         >
           <nav className="p-3 space-y-5 overflow-y-auto">
@@ -226,7 +226,7 @@ export function App() {
                         key={item.id}
                         type="button"
                         onClick={() => setActiveSection(item.id)}
-                        className={`w-full text-left px-2.5 py-1.5 rounded-md text-xs font-medium flex items-center justify-between transition-colors whitespace-nowrap ${
+                        className={`w-full text-right px-2.5 py-1.5 rounded-md text-xs font-medium flex items-center justify-between transition-colors whitespace-nowrap ${
                           isActive
                             ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
                             : 'text-slate-400 hover:text-slate-100 hover:bg-slate-900'
@@ -253,12 +253,12 @@ export function App() {
         <main className="flex-1 min-w-0 p-6 lg:p-8 overflow-y-auto max-w-[1440px]">
           {loading ? (
             <div className="p-8 bg-[#0F1523] border border-slate-800 rounded-lg text-sm text-slate-400 font-mono">
-              Loading Baron Nexus security posture and verifying SHA-256 audit chain...
+              جارٍ تحميل بيانات الموقف الأمني والتحقق من سلامة سلسلة التدقيق SHA-256...
             </div>
           ) : error ? (
             <div className="p-6 bg-rose-950/30 border border-rose-800 rounded-lg space-y-3">
               <div className="text-sm font-semibold text-rose-200">
-                Operation or Authorization Blocked
+                تم رفض العملية أو منع الوصول بموجب سياسة الصلاحيات
               </div>
               <div className="text-xs text-rose-300 font-mono">{error}</div>
               <div className="flex items-center gap-3">
@@ -267,14 +267,14 @@ export function App() {
                   onClick={() => loadData('proj-sovereign-cloud')}
                   className="px-3 py-1.5 text-xs font-medium bg-slate-800 text-slate-100 rounded hover:bg-slate-700"
                 >
-                  Retry / Return to Authorized Project
+                  إعادة المحاولة / العودة للمشروع المصرح
                 </button>
                 <button
                   type="button"
                   onClick={() => handleSwitchUser('usr-admin-01')}
                   className="px-3 py-1.5 text-xs font-medium bg-cyan-400 text-slate-950 rounded hover:bg-cyan-300"
                 >
-                  Switch to Platform Administrator
+                  التبديل إلى حساب مدير المنصة (PLATFORM_ADMIN)
                 </button>
               </div>
             </div>
@@ -287,6 +287,7 @@ export function App() {
                   onOpenScopeModal={() => setIsScopeModalOpen(true)}
                 />
               )}
+              {activeSection === 'lan-security' && <LanSecurityView />}
               {activeSection === 'copilot' && (
                 <AICopilotView
                   data={overviewData}
@@ -381,7 +382,6 @@ export function App() {
         </main>
       </div>
 
-      {/* Scope Configuration Modal */}
       <ScopeEditModal
         scope={overviewData?.scopes[0]}
         isOpen={isScopeModalOpen}
@@ -389,7 +389,6 @@ export function App() {
         onSave={handleSaveScope}
       />
 
-      {/* Command Palette Modal */}
       <CommandPaletteModal
         isOpen={isCommandPaletteOpen}
         onClose={() => setIsCommandPaletteOpen(false)}

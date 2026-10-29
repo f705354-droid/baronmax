@@ -292,3 +292,96 @@ test('Attack Path Engine: discovers paths and distinguishes OBSERVED vs INFERRED
   assert.equal(paths[0].chokePointNodeId, 'n2');
   assert.ok(paths[0].compositeRiskScore > 50);
 });
+
+import {
+  validatePrivateLanTarget,
+  calculateCidrFromIpAndMask,
+  isValidContiguousNetmask,
+  buildSafeNmapArgs,
+  correlateServiceCves,
+  analyzeArpTableAnomalies,
+  evaluateHttpSecurityHeaders,
+  generateDefensiveHardeningPlaybook,
+} from './lanSecurityEngine';
+
+test('LAN Security Guardrails: permits RFC1918 private IPs/CIDRs and rejects public IPs, octal bypass, broadcast, or command injection', () => {
+  const validPrivateCidr = validatePrivateLanTarget('192.168.1.45/24', { allowCidr: true });
+  assert.equal(validPrivateCidr.allowed, true);
+  assert.equal(validPrivateCidr.normalizedTarget, '192.168.1.0/24');
+
+  const validPrivateIp = validatePrivateLanTarget('10.24.0.15', { allowCidr: false });
+  assert.equal(validPrivateIp.allowed, true);
+  assert.equal(validPrivateIp.normalizedTarget, '10.24.0.15');
+
+  const publicIpRejected = validatePrivateLanTarget('8.8.8.8', { allowCidr: false });
+  assert.equal(publicIpRejected.allowed, false);
+  assert.equal(publicIpRejected.rejectionCode, 'PUBLIC_IP_FORBIDDEN');
+
+  const octalBypassRejected = validatePrivateLanTarget('010.0.0.1', { allowCidr: false });
+  assert.equal(octalBypassRejected.allowed, false);
+  assert.equal(octalBypassRejected.rejectionCode, 'OCTAL_IP_BYPASS_DETECTED');
+
+  const broadcastRejected = validatePrivateLanTarget('192.168.1.255', { allowCidr: false });
+  assert.equal(broadcastRejected.allowed, false);
+  assert.equal(broadcastRejected.rejectionCode, 'BROADCAST_OR_NET_ADDRESS_FORBIDDEN');
+
+  const loopbackSelfAuditAllowed = validatePrivateLanTarget('127.0.0.1', {
+    allowCidr: false,
+    allowLoopbackSelfAudit: true,
+  });
+  assert.equal(loopbackSelfAuditAllowed.allowed, true);
+  assert.equal(loopbackSelfAuditAllowed.isLoopbackSelfAudit, true);
+
+  const commandInjectionRejected = validatePrivateLanTarget('192.168.1.1; cat /etc/passwd', { allowCidr: false });
+  assert.equal(commandInjectionRejected.allowed, false);
+  assert.equal(commandInjectionRejected.rejectionCode, 'COMMAND_INJECTION_DETECTED');
+
+  assert.equal(isValidContiguousNetmask('255.255.255.0'), true);
+  assert.equal(isValidContiguousNetmask('255.0.255.0'), false);
+  assert.equal(calculateCidrFromIpAndMask('192.168.10.54', '255.255.255.0'), '192.168.10.0/24');
+});
+
+test('LAN Privilege Fallback, ARP Spoofing Detector, HTTP Header Evaluator & Hardening Playbook', () => {
+  const nonRootArgs = buildSafeNmapArgs('192.168.1.10', 'SERVICE_VERSION', false, false);
+  assert.ok(nonRootArgs.includes('-sT'));
+  assert.ok(!nonRootArgs.includes('-sS'));
+
+  const rootArgs = buildSafeNmapArgs('192.168.1.10', 'OS_DETECTION', true, false);
+  assert.ok(rootArgs.includes('-sS'));
+  assert.ok(rootArgs.includes('-O'));
+
+  const correlated = correlateServiceCves([
+    {
+      port: 22,
+      protocol: 'TCP',
+      service: 'ssh',
+      product: 'OpenSSH',
+      version: '8.2p1 Ubuntu',
+      cpe: 'cpe:/a:openbsd:openssh:8.2p1',
+      bannerSummary: 'SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5',
+      safeScriptFindings: [],
+    },
+  ]);
+  assert.ok(correlated.length >= 1);
+  assert.equal(correlated[0].cveId, 'CVE-2023-38408');
+
+  const arpAnomalies = analyzeArpTableAnomalies([
+    { ip: '192.168.1.1', mac: '00:09:0F:AA:14:01' },
+    { ip: '192.168.1.99', mac: '00:09:0F:AA:14:01' },
+  ]);
+  assert.equal(arpAnomalies.length, 1);
+  assert.equal(arpAnomalies[0].type, 'DUPLICATE_MAC_SPOOFING');
+
+  const hdrEval = evaluateHttpSecurityHeaders('http://127.0.0.1:3000/', 200, 1.5, {
+    'x-content-type-options': 'nosniff',
+    'x-frame-options': 'SAMEORIGIN',
+    'referrer-policy': 'no-referrer',
+  });
+  assert.ok(hdrEval.scorePercent >= 40);
+
+  const playbook = generateDefensiveHardeningPlaybook('192.168.1.10', [], correlated);
+  assert.ok(playbook.nftablesRules.includes('table inet baron_filter'));
+  assert.ok(playbook.sysctlHardening.includes('rp_filter = 1'));
+});
+
+

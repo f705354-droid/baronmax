@@ -4,7 +4,7 @@ import { Severity } from '../../domain/types';
 import { SectionHeader, SeverityLabel, VerificationLabel } from '../SharedUI';
 
 // ============================================================================
-// 6. ATTACK PATH & GRAPH ANALYSIS VIEW
+// 6. ATTACK PATH & GRAPH ANALYSIS VIEW (تحليل مسارات الهجوم)
 // ============================================================================
 export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ data }) => {
   const [derivationFilter, setDerivationFilter] = useState<'ALL' | 'OBSERVED' | 'INFERRED_HYPOTHESIS'>('ALL');
@@ -15,7 +15,6 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
   );
   const selectedNode = data.graphNodes.find((n) => n.id === selectedNodeId) ?? data.graphNodes[0];
 
-  // Deterministic coordinates for the interactive SVG attack graph with generous horizontal spacing
   const nodePositions: Record<string, { x: number; y: number }> = {
     'gn-api-gw': { x: 105, y: 75 },
     'gn-portal': { x: 105, y: 245 },
@@ -27,8 +26,8 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Attack-Path & Graph Relationship Analysis"
-        subtitle="Typed, timestamped graph relationships distinguishing OBSERVED telemetry paths from INFERRED_HYPOTHESIS paths. Focuses on defensive choke-point remediation."
+        title="تحليل مسارات الهجوم والعلاقات الشبكية (Graph Analysis)"
+        subtitle="تمثيل بياني للعلاقات بين الأصول والهويات والصلاحيات مع تمييز واضح بين المسارات المرصودة فعلياً (OBSERVED) والفرضيات المستنتجة (INFERRED_HYPOTHESIS)."
       />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -45,30 +44,30 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
               }`}
             >
               {mode === 'ALL'
-                ? 'All Graph Paths'
+                ? 'جميع المسارات المكتشفة'
                 : mode === 'OBSERVED'
-                ? 'Observed Paths (Evidence-Backed)'
-                : 'Inferred Hypotheses'}
+                ? 'مسارات مرصودة بالأدلة (OBSERVED)'
+                : 'فرضيات مستنتجة (HYPOTHESES)'}
             </button>
           ))}
         </div>
         <div className="text-xs font-mono text-slate-400">
-          Nodes: {data.graphNodes.length} · Typed Edges: {data.graphEdges.length} · Discovered Paths: {filteredPaths.length}
+          العُقد: {data.graphNodes.length} · الروابط: {data.graphEdges.length} · المسارات الحرجة: {filteredPaths.length}
         </div>
       </div>
 
-      {/* Interactive SVG Graph Explorer + Node Inspector */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8 bg-[#0F1523] border border-slate-800/80 rounded-lg p-4">
           <div className="flex items-center justify-between text-xs text-slate-400 pb-3 border-b border-slate-800">
-            <span>Interactive Topology & Trust Graph (Click any node to inspect)</span>
-            <span className="font-mono">Solid Line = Observed · Dashed Line = Inferred Hypothesis</span>
+            <span>مخطط العلاقات التفاعلي (اضغط على أي عقدة لعرض التفاصيل)</span>
+            <span className="font-mono">خط متصل = علاقة مرصودة · خط متقطع = فرضية مستنتجة</span>
           </div>
           <svg
             viewBox="0 0 980 320"
+            dir="ltr"
             className="w-full h-72 bg-[#090D16] rounded mt-3 border border-slate-800/60"
             role="img"
-            aria-label="Attack path relationship graph"
+            aria-label="مخطط تحليل مسارات الهجوم"
           >
             {data.graphEdges.map((edge) => {
               const src = nodePositions[edge.source] || { x: 100, y: 100 };
@@ -161,50 +160,48 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
           </svg>
         </div>
 
-        {/* Selected Node Details */}
         <div className="lg:col-span-4 bg-[#0F1523] border border-slate-800/80 rounded-lg p-5 space-y-3">
           <h2 className="text-sm font-semibold text-slate-100">
-            Selected Graph Node Inspector
+            تفاصيل العقدة المحددة في الشبكة
           </h2>
           {selectedNode ? (
             <div className="space-y-2 text-xs">
-              <div className="font-mono text-cyan-300 font-semibold">{selectedNode.label}</div>
+              <div className="font-mono text-cyan-300 font-semibold" dir="ltr">{selectedNode.label}</div>
               <div className="text-slate-400">
-                Node ID: <span className="font-mono text-slate-200">{selectedNode.id}</span> · Type:{' '}
+                المعرف: <span className="font-mono text-slate-200">{selectedNode.id}</span> · النوع:{' '}
                 <span className="font-mono text-slate-200">{selectedNode.nodeType}</span>
               </div>
               <div className="text-slate-400">
-                Criticality: <span className="font-mono text-slate-200">{selectedNode.criticality}</span> · Exposure:{' '}
+                الأهمية: <span className="font-mono text-slate-200">{selectedNode.criticality}</span> · التعرض:{' '}
                 <span className="font-mono text-slate-200">{selectedNode.exposure}</span>
               </div>
               <div className="text-slate-400">
-                Privilege Level: <span className="font-mono text-amber-300">{selectedNode.privilegeLevel}</span>
+                مستوى الصلاحية: <span className="font-mono text-amber-300">{selectedNode.privilegeLevel}</span>
               </div>
               <div className="text-slate-400">
-                Verified Findings on Node:{' '}
+                الثغرات المؤكدة على العقدة:{' '}
                 <span className="font-mono text-rose-400 font-semibold">
                   {selectedNode.verifiedFindingsCount}
                 </span>
               </div>
               <div className="pt-2 border-t border-slate-800">
-                <div className="font-semibold text-slate-300 mb-1">Node Metadata</div>
+                <div className="font-semibold text-slate-300 mb-1">البيانات الوصفية (Metadata)</div>
                 {Object.entries(selectedNode.metadata).map(([k, v]) => (
-                  <div key={k} className="font-mono text-[11px] text-slate-400">
+                  <div key={k} className="font-mono text-[11px] text-slate-400" dir="ltr">
                     {k}: {v}
                   </div>
                 ))}
               </div>
             </div>
           ) : (
-            <div className="text-xs text-slate-400">Select a node in the graph to inspect.</div>
+            <div className="text-xs text-slate-400">اختر عقدة من الرسم البياني لعرض بياناتها.</div>
           )}
         </div>
       </div>
 
-      {/* Computed Attack Paths & Defensive Break Recommendations */}
       <div className="space-y-3">
         <h2 className="text-sm font-semibold text-slate-100">
-          Computed Attack Paths & Choke-Point Remediation Controls
+          مسارات الهجوم المحسوبة وضوابط كسر نقاط الاختناق (Choke-Point Controls)
         </h2>
         {filteredPaths.map((path) => (
           <div
@@ -212,7 +209,7 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
             className="p-4 bg-[#0F1523] border border-slate-800/80 rounded-lg space-y-2"
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="text-sm font-semibold text-slate-100">{path.title}</div>
+              <div className="text-sm font-semibold text-slate-100 font-mono" dir="ltr">{path.title}</div>
               <div className="flex items-center gap-3 text-xs font-mono">
                 <span
                   className={
@@ -222,19 +219,19 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
                   }
                 >
                   {path.derivation === 'OBSERVED'
-                    ? 'OBSERVED PATH'
-                    : 'INFERRED HYPOTHESIS (UNVERIFIED)'}
+                    ? 'مسار مرصود ومؤكد (OBSERVED)'
+                    : 'فرضية مستنتجة (HYPOTHESIS)'}
                 </span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
                 <span className="text-rose-400 font-semibold">
-                  Composite Risk: {path.compositeRiskScore}/100
+                  درجة المخاطرة: {path.compositeRiskScore}/100
                 </span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
-                <span className="text-slate-300">Confidence: {path.confidenceScore}%</span>
+                <span className="text-slate-300">الثقة: {path.confidenceScore}%</span>
               </div>
             </div>
             <div className="text-xs text-slate-400">
-              <span className="font-medium text-slate-200">Defensive Controls to Break Path:</span>{' '}
+              <span className="font-medium text-slate-200">الضوابط الدفاعية لكسر المسار:</span>{' '}
               {path.recommendedControls.join(' · ')}
             </div>
           </div>
@@ -245,7 +242,7 @@ export const AttackPathAnalysisView: React.FC<{ data: OverviewPayload }> = ({ da
 };
 
 // ============================================================================
-// 7. THREAT INTELLIGENCE & IOC MANAGEMENT VIEW
+// 7. THREAT INTELLIGENCE & IOC MANAGEMENT VIEW (استخبارات التهديدات)
 // ============================================================================
 export const ThreatIntelligenceView: React.FC<{
   data: OverviewPayload;
@@ -253,7 +250,7 @@ export const ThreatIntelligenceView: React.FC<{
 }> = ({ data, onRefresh }) => {
   const [iocType, setIocType] = useState('IPV4');
   const [value, setValue] = useState('');
-  const [labels, setLabels] = useState('oauth-abuse, token-replay');
+  const [labels] = useState('oauth-abuse, token-replay');
   const [sourceAttribution, setSourceAttribution] = useState('FS-ISAC Advisory Feed');
   const [sourceVerified, setSourceVerified] = useState(true);
   const [tlp, setTlp] = useState('TLP:AMBER');
@@ -274,18 +271,18 @@ export const ThreatIntelligenceView: React.FC<{
         tlpMarking: tlp,
       });
       setValue('');
-      setFeedback('Added indicator to Threat Intelligence registry.');
+      setFeedback('تمت إضافة مؤشر الاختراق (IOC) إلى سجل استخبارات التهديدات.');
       await onRefresh();
     } catch (err: any) {
-      setFeedback(`Error: ${err.message}`);
+      setFeedback(`خطأ: ${err.message}`);
     }
   };
 
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Threat Intelligence & Indicator of Compromise (IOC) Registry"
-        subtitle="Tracks IPv4, Domain, URL, SHA-256, and TLS fingerprint indicators with explicit source verification, confidence scores, and expiration policies. Unverified sources are never automatically labeled malicious."
+        title="استخبارات التهديدات وإدارة مؤشرات الاختراق (IOCs)"
+        subtitle="إدارة عناوين IPv4، النطاقات، الروابط، وبصمات SHA-256 مع توثيق المصدر ودرجة الثقة وتصنيف TLP وتواريخ انتهاء الصلاحية."
       />
 
       {feedback && (
@@ -299,12 +296,12 @@ export const ThreatIntelligenceView: React.FC<{
         className="p-5 bg-[#0F1523] border border-slate-800/80 rounded-lg space-y-4"
       >
         <h2 className="text-sm font-semibold text-slate-100">
-          Ingest Threat Indicator (Sanitized & Deduplicated)
+          إضافة مؤشر تهديد جديد (مع التنقية ومنع التكرار)
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           <div>
             <label htmlFor="ioc-type-select" className="block text-xs text-slate-400 mb-1">
-              Indicator Type
+              نوع المؤشر
             </label>
             <select
               id="ioc-type-select"
@@ -312,29 +309,30 @@ export const ThreatIntelligenceView: React.FC<{
               onChange={(e) => setIocType(e.target.value)}
               className="w-full px-3 py-2 text-xs bg-[#090D16] border border-slate-700 rounded text-slate-100"
             >
-              <option value="IPV4">IPV4</option>
-              <option value="DOMAIN">DOMAIN</option>
-              <option value="URL">URL</option>
-              <option value="SHA256">SHA256</option>
-              <option value="TLS_FINGERPRINT">TLS_FINGERPRINT</option>
+              <option value="IPV4">عنوان IPV4</option>
+              <option value="DOMAIN">نطاق (DOMAIN)</option>
+              <option value="URL">رابط (URL)</option>
+              <option value="SHA256">بصمة ملف (SHA256)</option>
+              <option value="TLS_FINGERPRINT">بصمة شهادة (TLS)</option>
             </select>
           </div>
           <div className="lg:col-span-2">
             <label htmlFor="ioc-value-input" className="block text-xs text-slate-400 mb-1">
-              Indicator Value
+              قيمة المؤشر
             </label>
             <input
               id="ioc-value-input"
               type="text"
+              dir="ltr"
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              placeholder="e.g. 203.0.113.42 or sha256 digest"
+              placeholder="203.0.113.42 أو بصمة SHA-256"
               className="w-full px-3 py-2 text-xs font-mono bg-[#090D16] border border-slate-700 rounded text-slate-100"
             />
           </div>
           <div>
             <label htmlFor="ioc-source-input" className="block text-xs text-slate-400 mb-1">
-              Source Attribution
+              المصدر الاستخباراتي
             </label>
             <input
               id="ioc-source-input"
@@ -346,7 +344,7 @@ export const ThreatIntelligenceView: React.FC<{
           </div>
           <div>
             <label htmlFor="ioc-tlp-select" className="block text-xs text-slate-400 mb-1">
-              TLP Classification
+              تصنيف المشاركة (TLP)
             </label>
             <select
               id="ioc-tlp-select"
@@ -368,33 +366,33 @@ export const ThreatIntelligenceView: React.FC<{
               checked={sourceVerified}
               onChange={(e) => setSourceVerified(e.target.checked)}
             />
-            Source Attribution Cryptographically / Analyst Verified
+            تم التحقق من موثوقية المصدر الاستخباراتي
           </label>
           <button
             type="submit"
             className="px-4 py-2 text-xs font-medium text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-md"
           >
-            Add Threat Indicator
+            إضافة مؤشر التهديد
           </button>
         </div>
       </form>
 
       <div className="bg-[#0F1523] border border-slate-800/80 rounded-lg overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-right border-collapse">
           <thead>
             <tr className="border-b border-slate-800 text-[11px] font-mono text-slate-400">
-              <th className="py-3 px-4">Type & Indicator Value</th>
-              <th className="py-3 px-4">Source & Provenance</th>
-              <th className="py-3 px-4">Confidence & TLP</th>
-              <th className="py-3 px-4">Correlated Records</th>
-              <th className="py-3 px-4">Expiration</th>
+              <th className="py-3 px-4">النوع وقيمة المؤشر</th>
+              <th className="py-3 px-4">المصدر وحالة التوثيق</th>
+              <th className="py-3 px-4">درجة الثقة و TLP</th>
+              <th className="py-3 px-4">الأصول والنتائج المرتبطة</th>
+              <th className="py-3 px-4">انتهاء الصلاحية</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-800/60 text-xs">
             {data.threatIndicators.map((ioc) => (
               <tr key={ioc.id} className="hover:bg-slate-800/30">
                 <td className="py-3 px-4">
-                  <div className="font-mono text-cyan-300">{ioc.value}</div>
+                  <div className="font-mono text-cyan-300" dir="ltr">{ioc.value}</div>
                   <div className="text-[11px] text-slate-400 mt-0.5">
                     {ioc.iocType} · {ioc.threatLabels.join(' · ')}
                   </div>
@@ -407,19 +405,19 @@ export const ThreatIntelligenceView: React.FC<{
                     }`}
                   >
                     {ioc.sourceVerified
-                      ? 'Verified Feed Attribution'
-                      : 'Unverified External Feed (Treat as Candidate)'}
+                      ? 'مصدر موثق ومعتمد'
+                      : 'مصدر خارجي غير موثق (يعامل كمرشح قيد المراجعة)'}
                   </div>
                 </td>
                 <td className="py-3 px-4 font-mono">
-                  <div className="text-slate-100">{ioc.confidence}% Confidence</div>
+                  <div className="text-slate-100">الثقة: {ioc.confidence}%</div>
                   <div className="text-amber-300 text-[11px]">{ioc.tlpMarking}</div>
                 </td>
                 <td className="py-3 px-4 font-mono text-slate-400">
-                  Assets: {ioc.relatedAssetIds.join(', ') || 'None'} · Findings:{' '}
-                  {ioc.relatedFindingIds.join(', ') || 'None'}
+                  الأصول: {ioc.relatedAssetIds.join(', ') || 'لا يوجد'} · الثغرات:{' '}
+                  {ioc.relatedFindingIds.join(', ') || 'لا يوجد'}
                 </td>
-                <td className="py-3 px-4 font-mono text-slate-400">
+                <td className="py-3 px-4 font-mono text-slate-400" dir="ltr">
                   {ioc.expiresAt.slice(0, 10)}
                 </td>
               </tr>
@@ -432,20 +430,20 @@ export const ThreatIntelligenceView: React.FC<{
 };
 
 // ============================================================================
-// 8. DEFENSIVE SECURITY OPERATIONS (SECOPS) VIEW
+// 8. DEFENSIVE SECURITY OPERATIONS (SECOPS) VIEW (العمليات الأمنية SOC)
 // ============================================================================
 export const SecurityOperationsView: React.FC<{ data: OverviewPayload }> = ({ data }) => {
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Defensive Security Operations (SOC) & Detection Engineering"
-        subtitle="Normalized telemetry alert queue paired with versioned, MITRE ATT&CK-mapped detection rules and transparent match explanations."
+        title="العمليات الأمنية الدفاعية (SOC) وهندسة قواعد الكشف"
+        subtitle="توحيد وتطبيع الأحداث الأمنية وإدارة التنبيهات مع قواعد كشف مرتبطة بإطار MITRE ATT&CK وتفسير واضح لأسباب التطابق."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-7 space-y-3">
           <h2 className="text-sm font-semibold text-slate-100">
-            Normalized Security Alerts ({data.alerts.length})
+            التنبيهات الأمنية المطبّعة ({data.alerts.length})
           </h2>
           {data.alerts.map((alert) => (
             <div
@@ -456,17 +454,17 @@ export const SecurityOperationsView: React.FC<{ data: OverviewPayload }> = ({ da
                 <div className="flex items-center gap-2">
                   <SeverityLabel severity={alert.severity} />
                   <span aria-hidden="true" className="text-slate-600">·</span>
-                  <span className="font-mono text-slate-300">{alert.id}</span>
+                  <span className="font-mono text-slate-300" dir="ltr">{alert.id}</span>
                   <span aria-hidden="true" className="text-slate-600">·</span>
                   <span className="font-mono text-cyan-300">{alert.status}</span>
                 </div>
                 <span className="font-mono text-slate-400">
-                  Confidence: {alert.confidence}% · {alert.isSynthetic ? 'Synthetic Stream' : 'Live'}
+                  الثقة: {alert.confidence}% · {alert.isSynthetic ? 'بيانات محاكاة' : 'مباشر'}
                 </span>
               </div>
               <div className="text-sm font-semibold text-slate-100">{alert.title}</div>
               <div className="text-xs text-slate-300">{alert.matchExplanation}</div>
-              <pre className="p-2.5 bg-[#090D16] border border-slate-800 rounded text-[11px] font-mono text-slate-400 overflow-x-auto">
+              <pre className="p-2.5 bg-[#090D16] border border-slate-800 rounded text-[11px] font-mono text-slate-400 overflow-x-auto text-left" dir="ltr">
                 {alert.normalizedEventJson}
               </pre>
             </div>
@@ -475,7 +473,7 @@ export const SecurityOperationsView: React.FC<{ data: OverviewPayload }> = ({ da
 
         <div className="lg:col-span-5 space-y-3">
           <h2 className="text-sm font-semibold text-slate-100">
-            Versioned Detection Rules ({data.detectionRules.length})
+            قواعد الكشف المعتمدة ({data.detectionRules.length})
           </h2>
           {data.detectionRules.map((rule) => (
             <div
@@ -483,14 +481,14 @@ export const SecurityOperationsView: React.FC<{ data: OverviewPayload }> = ({ da
               className="p-4 bg-[#0F1523] border border-slate-800/80 rounded-lg space-y-2 text-xs"
             >
               <div className="flex items-center justify-between font-mono">
-                <span className="text-cyan-300 font-semibold">
+                <span className="text-cyan-300 font-semibold" dir="ltr">
                   {rule.id} (v{rule.version})
                 </span>
-                <span className="text-emerald-400">Test: {rule.testPassStatus}</span>
+                <span className="text-emerald-400">حالة الاختبار: {rule.testPassStatus}</span>
               </div>
               <div className="text-sm font-semibold text-slate-100">{rule.name}</div>
-              <div className="text-slate-400 font-mono text-[11px]">{rule.mitreTechnique}</div>
-              <div className="p-2 bg-[#090D16] border border-slate-800 rounded font-mono text-[11px] text-slate-300">
+              <div className="text-slate-400 font-mono text-[11px]" dir="ltr">{rule.mitreTechnique}</div>
+              <div className="p-2 bg-[#090D16] border border-slate-800 rounded font-mono text-[11px] text-slate-300 text-left" dir="ltr">
                 {rule.queryExpression}
               </div>
               <div className="text-slate-400">{rule.rationale}</div>
@@ -503,7 +501,7 @@ export const SecurityOperationsView: React.FC<{ data: OverviewPayload }> = ({ da
 };
 
 // ============================================================================
-// 9. INCIDENT RESPONSE VIEW
+// 9. INCIDENT RESPONSE VIEW (الاستجابة للحوادث)
 // ============================================================================
 export const IncidentResponseView: React.FC<{
   data: OverviewPayload;
@@ -511,7 +509,7 @@ export const IncidentResponseView: React.FC<{
 }> = ({ data, onRefresh }) => {
   const [title, setTitle] = useState('');
   const [severity, setSeverity] = useState<string>(Severity.HIGH);
-  const [playbook, setPlaybook] = useState('PB-API-04: API Authorization Bypass Containment');
+  const [playbook, setPlaybook] = useState('PB-API-04: احتواء تجاوز صلاحيات واجهات API وتدوير المفاتيح');
   const [feedback, setFeedback] = useState<string | null>(null);
 
   const handleCreateIncident = async (e: React.FormEvent) => {
@@ -521,33 +519,33 @@ export const IncidentResponseView: React.FC<{
       await apiClient.createIncident({
         projectId: data.currentProject.id,
         title: title.trim(),
-        description: 'Initiated from Incident Response console.',
+        description: 'تم فتح الحادثة من وحدة الاستجابة للحوادث.',
         severity,
         playbookName: playbook,
       });
       setTitle('');
-      setFeedback('Incident opened and assigned to responder.');
+      setFeedback('تم فتح سجل الحادثة وتعيين مستجيب الحوادث.');
       await onRefresh();
     } catch (err: any) {
-      setFeedback(`Error: ${err.message}`);
+      setFeedback(`خطأ: ${err.message}`);
     }
   };
 
   const handleApproveContainment = async (incidentId: string, actionId: string) => {
     try {
       await apiClient.approveIncidentContainment(incidentId, actionId);
-      setFeedback('Containment action approved and logged to immutable audit trail.');
+      setFeedback('تم اعتماد إجراء الاحتواء وتوثيقه في سجل التدقيق المشفر.');
       await onRefresh();
     } catch (err: any) {
-      setFeedback(`Error: ${err.message}`);
+      setFeedback(`خطأ: ${err.message}`);
     }
   };
 
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Incident Response & Playbook Containment"
-        subtitle="Structured incident command with timelines, recovery checklists, and mandatory human approval for disruptive containment actions."
+        title="الاستجابة للحوادث وخطط الاحتواء الدفاعية (Incident Response)"
+        subtitle="إدارة الحوادث الأمنية والخط الزمني وقوائم التعافي مع اشتراط الموافقة البشرية الصريحة قبل تنفيذ أي إجراءات احتواء مؤثرة."
       />
 
       {feedback && (
@@ -560,24 +558,24 @@ export const IncidentResponseView: React.FC<{
         onSubmit={handleCreateIncident}
         className="p-5 bg-[#0F1523] border border-slate-800/80 rounded-lg space-y-3"
       >
-        <h2 className="text-sm font-semibold text-slate-100">Declare New Security Incident</h2>
+        <h2 className="text-sm font-semibold text-slate-100">تسجيل حادثة أمنية جديدة</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
             <label htmlFor="inc-title-input" className="block text-xs text-slate-400 mb-1">
-              Incident Title
+              عنوان الحادثة
             </label>
             <input
               id="inc-title-input"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g. INC-2026-042: Suspicious IAM Role Assumption"
+              placeholder="مثال: INC-2026-042: محاولة وصول غير مصرحة لدور IAM"
               className="w-full px-3 py-2 text-xs bg-[#090D16] border border-slate-700 rounded text-slate-100"
             />
           </div>
           <div>
             <label htmlFor="inc-sev-select" className="block text-xs text-slate-400 mb-1">
-              Severity
+              الخطورة
             </label>
             <select
               id="inc-sev-select"
@@ -594,7 +592,7 @@ export const IncidentResponseView: React.FC<{
           </div>
           <div>
             <label htmlFor="inc-pb-input" className="block text-xs text-slate-400 mb-1">
-              Defensive Response Playbook
+              خطة الاستجابة الدفاعية (Playbook)
             </label>
             <input
               id="inc-pb-input"
@@ -610,7 +608,7 @@ export const IncidentResponseView: React.FC<{
             type="submit"
             className="px-4 py-2 text-xs font-medium text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-md"
           >
-            Open Incident Record
+            فتح سجل الحادثة
           </button>
         </div>
       </form>
@@ -626,13 +624,13 @@ export const IncidentResponseView: React.FC<{
                 <div className="flex items-center gap-2 text-xs font-mono">
                   <SeverityLabel severity={inc.severity} />
                   <span aria-hidden="true" className="text-slate-600">·</span>
-                  <span className="text-cyan-300">{inc.id}</span>
+                  <span className="text-cyan-300" dir="ltr">{inc.id}</span>
                   <span aria-hidden="true" className="text-slate-600">·</span>
-                  <span className="text-amber-300">Status: {inc.status}</span>
+                  <span className="text-amber-300">الحالة: {inc.status}</span>
                 </div>
                 <h3 className="mt-1 text-base font-semibold text-slate-100">{inc.title}</h3>
                 <div className="text-xs text-slate-400">
-                  Playbook: {inc.playbookName} · Commander: {inc.assignedResponder}
+                  الخطة: {inc.playbookName} · قائد الاستجابة: {inc.assignedResponder}
                 </div>
               </div>
             </div>
@@ -640,7 +638,7 @@ export const IncidentResponseView: React.FC<{
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               <div className="p-3 bg-[#090D16] border border-slate-800 rounded space-y-2">
                 <div className="font-semibold text-slate-200">
-                  Containment Actions & Approval Gate
+                  إجراءات الاحتواء وبوابة الموافقة الإدارية
                 </div>
                 {inc.containmentActions.map((ca) => (
                   <div
@@ -650,7 +648,7 @@ export const IncidentResponseView: React.FC<{
                     <div>
                       <div className="text-slate-200">{ca.actionTitle}</div>
                       <div className="font-mono text-[11px] text-slate-400">
-                        {ca.impactLevel} · Status: {ca.approvalStatus}
+                        {ca.impactLevel} · الحالة: {ca.approvalStatus}
                       </div>
                     </div>
                     {ca.approvalStatus === 'PENDING_APPROVAL' && (
@@ -659,7 +657,7 @@ export const IncidentResponseView: React.FC<{
                         onClick={() => handleApproveContainment(inc.id, ca.id)}
                         className="px-2.5 py-1 text-xs font-medium text-slate-950 bg-amber-400 hover:bg-amber-300 rounded whitespace-nowrap shrink-0"
                       >
-                        Approve Containment
+                        اعتماد إجراء الاحتواء
                       </button>
                     )}
                   </div>
@@ -667,10 +665,10 @@ export const IncidentResponseView: React.FC<{
               </div>
 
               <div className="p-3 bg-[#090D16] border border-slate-800 rounded space-y-2">
-                <div className="font-semibold text-slate-200">Incident Timeline</div>
+                <div className="font-semibold text-slate-200">الخط الزمني للحادثة</div>
                 {inc.timeline.map((tl) => (
                   <div key={tl.id} className="text-slate-300">
-                    <span className="font-mono text-[11px] text-slate-500">
+                    <span className="font-mono text-[11px] text-slate-500" dir="ltr">
                       [{tl.timestamp.slice(11, 19)}]
                     </span>{' '}
                     <span className="font-medium text-cyan-300">{tl.actor}:</span> {tl.entry}
@@ -686,7 +684,7 @@ export const IncidentResponseView: React.FC<{
 };
 
 // ============================================================================
-// 10. CLOUD AND CONTAINER SECURITY VIEW
+// 10. CLOUD AND CONTAINER SECURITY VIEW (أمن السحابة والحاويات)
 // ============================================================================
 export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }) => {
   const cloudAssets = data.assets.filter(
@@ -706,8 +704,8 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Cloud, Kubernetes & Container Supply-Chain Security"
-        subtitle="Passive configuration review for AWS/GCP IAM trust policies, Kubernetes PodSecurityStandards, container image SBOMs, and Infrastructure-as-Code."
+        title="أمن السحابة وعناقيد Kubernetes وسلسلة إمداد الحاويات"
+        subtitle="فحص غير تدميري لسياسات IAM، معايير أمن PodSecurityStandards، قوائم مكونات البرمجيات (SBOM)، والبنية التحتية كبرمجيات (IaC)."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -720,9 +718,9 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
               <span className="text-cyan-300 font-semibold">{asset.displayName}</span>
               <span className="text-emerald-400">{asset.verificationStatus}</span>
             </div>
-            <div className="font-mono text-slate-300">{asset.address}</div>
+            <div className="font-mono text-slate-300" dir="ltr">{asset.address}</div>
             <div className="text-slate-400">
-              Stack: {asset.technologies.join(' · ')} · Criticality: {asset.criticality}
+              التقنيات: {asset.technologies.join(' · ')} · الأهمية: {asset.criticality}
             </div>
             <div className="text-slate-400">{asset.notes}</div>
           </div>
@@ -731,7 +729,7 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
 
       <div className="space-y-3">
         <h2 className="text-sm font-semibold text-slate-100">
-          Cloud IAM, Kubernetes & Container Image Findings ({cloudFindings.length})
+          نتائج فحص السحابة والحاويات وهويات IAM ({cloudFindings.length})
         </h2>
         {cloudFindings.map((f) => (
           <div
@@ -742,7 +740,7 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
               <div className="flex items-center gap-2">
                 <SeverityLabel severity={f.severity} />
                 <span aria-hidden="true" className="text-slate-600">·</span>
-                <span className="font-mono text-slate-300">{f.id}</span>
+                <span className="font-mono text-slate-300" dir="ltr">{f.id}</span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
                 <VerificationLabel verified={f.isVerified} origin={f.executionOrigin} />
               </div>
@@ -750,7 +748,7 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
             </div>
             <div className="text-sm font-semibold text-slate-100">{f.title}</div>
             <div className="text-slate-400">{f.description}</div>
-            <div className="text-emerald-300 font-medium">Remediation: {f.remediationPlan}</div>
+            <div className="text-emerald-300 font-medium">المعالجة الموصى بها: {f.remediationPlan}</div>
           </div>
         ))}
       </div>
@@ -759,7 +757,7 @@ export const CloudContainerSecurityView: React.FC<{ data: OverviewPayload }> = (
 };
 
 // ============================================================================
-// 11. WEB AND API SECURITY VIEW
+// 11. WEB AND API SECURITY VIEW (أمن تطبيقات الويب وواجهات API)
 // ============================================================================
 export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }) => {
   const webAssets = data.assets.filter(
@@ -772,8 +770,8 @@ export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Web Application, OpenAPI & TLS Security Posture"
-        subtitle="Non-destructive OAuth2/OIDC boundary verification, TLS 1.3 cipher validation, and HTTP security header compliance for scoped endpoints."
+        title="أمن تطبيقات الويب وواجهات OpenAPI وبروتوكول TLS"
+        subtitle="التحقق الآمن من حدود صلاحيات OAuth2/OIDC، خوارزميات تشفير TLS 1.3، وترويسات الحماية الأمنية للمسارات المعتمدة."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -786,11 +784,11 @@ export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }
               <span className="font-semibold text-slate-100 text-sm">{asset.displayName}</span>
               <span className="font-mono text-emerald-400">{asset.verificationStatus}</span>
             </div>
-            <div className="font-mono text-cyan-300">{asset.address}</div>
+            <div className="font-mono text-cyan-300" dir="ltr">{asset.address}</div>
             <div className="text-slate-400">
-              Technologies: {asset.technologies.join(' · ')}
+              التقنيات: {asset.technologies.join(' · ')}
             </div>
-            <div className="font-mono text-[11px] text-slate-400">
+            <div className="font-mono text-[11px] text-slate-400" dir="ltr">
               Services: {asset.openServices.map((s) => `${s.port}/${s.protocol} (${s.tlsStatus})`).join(', ')}
             </div>
           </div>
@@ -799,7 +797,7 @@ export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }
 
       <div className="space-y-3">
         <h2 className="text-sm font-semibold text-slate-100">
-          Web, API & TLS Findings ({webFindings.length})
+          نتائج فحص الويب وواجهات API والتشفير ({webFindings.length})
         </h2>
         {webFindings.map((f) => (
           <div
@@ -810,15 +808,15 @@ export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }
               <div className="flex items-center gap-2">
                 <SeverityLabel severity={f.severity} />
                 <span aria-hidden="true" className="text-slate-600">·</span>
-                <span className="font-mono text-slate-300">{f.id}</span>
+                <span className="font-mono text-slate-300" dir="ltr">{f.id}</span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
                 <VerificationLabel verified={f.isVerified} origin={f.executionOrigin} />
               </div>
-              <span className="font-mono text-slate-400">CWE: {f.cweId || 'N/A'}</span>
+              <span className="font-mono text-slate-400" dir="ltr">CWE: {f.cweId || 'N/A'}</span>
             </div>
             <div className="text-sm font-semibold text-slate-100">{f.title}</div>
             <div className="text-slate-400">{f.description}</div>
-            <div className="text-emerald-300">Remediation: {f.remediationPlan}</div>
+            <div className="text-emerald-300">المعالجة الموصى بها: {f.remediationPlan}</div>
           </div>
         ))}
       </div>
@@ -827,7 +825,7 @@ export const WebApiSecurityView: React.FC<{ data: OverviewPayload }> = ({ data }
 };
 
 // ============================================================================
-// 12. LABORATORY AND BENIGN ADVERSARY EMULATION VIEW
+// 12. LABORATORY AND BENIGN ADVERSARY EMULATION VIEW (المختبر والمحاكاة)
 // ============================================================================
 export const LaboratoryEmulationView: React.FC<{
   data: OverviewPayload;
@@ -840,19 +838,19 @@ export const LaboratoryEmulationView: React.FC<{
     try {
       const updated = await apiClient.executeLabScenario(scenarioId);
       setFeedback(
-        `Executed benign lab scenario "${updated.name}" (${updated.executionStatus}). Detection coverage: ${updated.detectionCoveragePercent}%. Cleanup: ${updated.cleanupStatus}.`
+        `تم تنفيذ سيناريو المختبر الآمن "${updated.name}" (${updated.executionStatus}). تغطية الكشف: ${updated.detectionCoveragePercent}%. حالة التنظيف: ${updated.cleanupStatus}.`
       );
       await onRefresh();
     } catch (err: any) {
-      setFeedback(`Error: ${err.message}`);
+      setFeedback(`خطأ: ${err.message}`);
     }
   };
 
   return (
     <div className="space-y-6">
       <SectionHeader
-        title="Controlled Laboratory & Benign Adversary Emulation"
-        subtitle="Validates SIEM detection rules and incident containment playbooks in isolated lab subnets using strictly benign test actions and synthetic principals."
+        title="المختبر المعزول ومحاكاة التهديدات الآمنة (Purple-Team Range)"
+        subtitle="التحقق من فعالية قواعد كشف SIEM وخطط الاحتواء داخل بيئات مختبرية معزولة باستخدام خطوات اختبار غير ضارة وبيانات اصطناعية بالكامل."
       />
 
       {feedback && (
@@ -870,15 +868,15 @@ export const LaboratoryEmulationView: React.FC<{
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2 text-xs font-mono">
-                  <span className="text-cyan-300 font-semibold">{lab.id}</span>
+                  <span className="text-cyan-300 font-semibold" dir="ltr">{lab.id}</span>
                   <span aria-hidden="true" className="text-slate-600">·</span>
-                  <span className="text-amber-300">Execution Mode: {lab.executionStatus}</span>
+                  <span className="text-amber-300">نمط التنفيذ: {lab.executionStatus}</span>
                   <span aria-hidden="true" className="text-slate-600">·</span>
-                  <span className="text-emerald-400">Cleanup: {lab.cleanupStatus}</span>
+                  <span className="text-emerald-400">حالة التنظيف: {lab.cleanupStatus}</span>
                 </div>
                 <h3 className="mt-1 text-base font-semibold text-slate-100">{lab.name}</h3>
                 <div className="text-xs font-mono text-slate-400 mt-0.5">
-                  MITRE: {lab.mitreMapping} · Synthetic Target: {lab.syntheticTarget} · Environment: {lab.labEnvironment}
+                  MITRE: {lab.mitreMapping} · الهدف الاصطناعي: {lab.syntheticTarget} · البيئة: {lab.labEnvironment}
                 </div>
               </div>
               <button
@@ -886,13 +884,13 @@ export const LaboratoryEmulationView: React.FC<{
                 onClick={() => handleRunScenario(lab.id)}
                 className="px-4 py-2 text-xs font-medium text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-md whitespace-nowrap shrink-0"
               >
-                Run Benign Emulation Check
+                تشغيل سيناريو المحاكاة الآمن
               </button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
               <div className="p-3 bg-[#090D16] border border-slate-800 rounded">
-                <div className="font-semibold text-slate-200 mb-1">Safety Preconditions</div>
+                <div className="font-semibold text-slate-200 mb-1">الشروط المسبقة للأمان</div>
                 <ul className="space-y-1 text-slate-400">
                   {lab.preconditions.map((p, i) => (
                     <li key={i}>• {p}</li>
@@ -900,7 +898,7 @@ export const LaboratoryEmulationView: React.FC<{
                 </ul>
               </div>
               <div className="p-3 bg-[#090D16] border border-slate-800 rounded">
-                <div className="font-semibold text-slate-200 mb-1">Expected Detections</div>
+                <div className="font-semibold text-slate-200 mb-1">عمليات الكشف المتوقعة</div>
                 <ul className="space-y-1 text-cyan-300 font-mono text-[11px]">
                   {lab.expectedDetections.map((d, i) => (
                     <li key={i}>• {d}</li>
@@ -909,7 +907,7 @@ export const LaboratoryEmulationView: React.FC<{
               </div>
               <div className="p-3 bg-[#090D16] border border-slate-800 rounded">
                 <div className="font-semibold text-emerald-300 mb-1">
-                  Observed Outcomes ({lab.detectionCoveragePercent}% Coverage)
+                  النتائج المرصودة ({lab.detectionCoveragePercent}% تغطية)
                 </div>
                 <ul className="space-y-1 text-slate-300">
                   {lab.observedOutcomes.map((o, i) => (
@@ -919,7 +917,7 @@ export const LaboratoryEmulationView: React.FC<{
               </div>
             </div>
 
-            <div className="p-3 bg-[#090D16] border border-slate-800 rounded font-mono text-[11px] text-slate-400 space-y-1">
+            <div className="p-3 bg-[#090D16] border border-slate-800 rounded font-mono text-[11px] text-slate-400 space-y-1 text-left" dir="ltr">
               {lab.logs.map((l, i) => (
                 <div key={i}>{l}</div>
               ))}

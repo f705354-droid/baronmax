@@ -25,6 +25,38 @@ import {
 } from '../domain/types';
 import { TargetValidationResult } from '../domain/scopeEngine';
 import { CopilotToolDefinition } from '../server/aiCopilotService';
+import {
+  LanDiscoveredHost,
+  LanHostAuditResult,
+  LanModuleSelfAuditIssue,
+  LanNicInfo,
+  LanScanProfile,
+  LanTrafficTelemetry,
+} from '../domain/lanSecurityEngine';
+
+export interface LanBootstrapPayload {
+  hostname: string;
+  kernel: string;
+  privileges: {
+    euid: number;
+    isRoot: boolean;
+    hasCapNetRaw: boolean;
+    recommendedScanTechnique: string;
+    privilegeNoticeAr: string;
+  };
+  interfaces: LanNicInfo[];
+  activeSubnetCidr: string;
+  discoveredHosts: LanDiscoveredHost[];
+  latestHostAudit: LanHostAuditResult;
+  traffic: LanTrafficTelemetry;
+  consoleLogs: {
+    id: string;
+    timestamp: string;
+    level: 'INFO' | 'WARN' | 'SECURITY' | 'SUCCESS';
+    message: string;
+  }[];
+  selfAuditFixes?: LanModuleSelfAuditIssue[];
+}
 
 export interface OverviewPayload {
   emergencyStopActive: boolean;
@@ -274,4 +306,54 @@ export const apiClient = {
       method: 'POST',
       body: JSON.stringify({ includeSynthetic }),
     }),
+
+  getLanBootstrap: () => requestJson<LanBootstrapPayload>('/api/v1/lan/bootstrap'),
+
+  discoverLanSubnet: (subnetCidr: string) =>
+    requestJson<{
+      activeSubnetCidr: string;
+      discoveredHosts: LanDiscoveredHost[];
+      latestHostAudit: LanHostAuditResult;
+      consoleLogs: LanBootstrapPayload['consoleLogs'];
+    }>('/api/v1/lan/discover', {
+      method: 'POST',
+      body: JSON.stringify({ subnetCidr }),
+    }),
+
+  auditLanHost: (targetIp: string, profile: LanScanProfile) =>
+    requestJson<{
+      latestHostAudit: LanHostAuditResult;
+      consoleLogs: LanBootstrapPayload['consoleLogs'];
+    }>('/api/v1/lan/audit-host', {
+      method: 'POST',
+      body: JSON.stringify({ targetIp, profile }),
+    }),
+
+  runLanDiagnosticTool: (payload: {
+    toolType: 'REAL_LOCALHOST_AUDIT' | 'HTTP_HEADER_INSPECT' | 'KERNEL_SOCKET_ROUTE_DUMP' | 'ARP_SPOOF_DETECTOR_TEST';
+    targetIp?: string;
+    targetPort?: number;
+  }) =>
+    requestJson<{
+      toolResult: {
+        toolType: string;
+        executedAt: string;
+        summaryAr: string;
+        rawOutput: string;
+        structuredData?: any;
+      };
+      latestHostAudit: LanHostAuditResult;
+      consoleLogs: LanBootstrapPayload['consoleLogs'];
+    }>('/api/v1/lan/run-tool', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+
+  getKaliAgentBundle: () =>
+    requestJson<{
+      mainPy: string;
+      requirementsTxt: string;
+      setupKaliSh: string;
+    }>('/api/v1/lan/kali-bundle'),
 };
+
