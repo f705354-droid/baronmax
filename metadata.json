@@ -1,0 +1,6 @@
+{
+  "name": "Baron Nexus — AI Cybersecurity Operations Platform",
+  "description": "Enterprise AI cybersecurity operations, authorized security assessment orchestration, attack-surface management, threat intelligence, and incident response platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

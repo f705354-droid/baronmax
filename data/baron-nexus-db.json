@@ -1,0 +1,1706 @@
+{
+  "emergencyStopActive": false,
+  "activeUserId": "usr-admin-01",
+  "workspaces": [
+    {
+      "id": "ws-enterprise-core",
+      "name": "Baron Sovereign Financial & Cloud Operations",
+      "organization": "Baron Global Holdings Ltd.",
+      "tier": "Enterprise Mission-Critical",
+      "createdAt": "2026-01-15T08:00:00.000Z"
+    },
+    {
+      "id": "ws-research-lab",
+      "name": "Isolated Adversary Emulation Range",
+      "organization": "Baron Security Research Division",
+      "tier": "Isolated Enclave",
+      "createdAt": "2026-03-10T10:00:00.000Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-sovereign-cloud",
+      "workspaceId": "ws-enterprise-core",
+      "name": "Sovereign Core Banking & API Gateway Assurance",
+      "code": "BNX-2026-FIN",
+      "description": "Authorized continuous security assessment, TLS/API validation, and attack-path monitoring for core payment APIs and Kubernetes workloads.",
+      "ownerId": "usr-admin-01",
+      "environment": "PRODUCTION",
+      "authorizationStatus": "AUTHORIZED",
+      "startDate": "2026-09-01T00:00:00.000Z",
+      "endDate": "2027-09-01T23:59:59.000Z",
+      "archived": false,
+      "createdAt": "2026-09-01T08:00:00.000Z",
+      "updatedAt": "2026-10-29T08:00:00.000Z"
+    },
+    {
+      "id": "proj-k8s-zero-trust",
+      "workspaceId": "ws-enterprise-core",
+      "name": "Zero-Trust Cloud & Container Mesh Review",
+      "code": "BNX-2026-K8S",
+      "description": "Multi-region EKS/GKE cluster posture, container image CVE validation, and service-account least-privilege review.",
+      "ownerId": "usr-mgr-02",
+      "environment": "STAGING",
+      "authorizationStatus": "AUTHORIZED",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2027-06-30T23:59:59.000Z",
+      "archived": false,
+      "createdAt": "2026-10-01T09:00:00.000Z",
+      "updatedAt": "2026-10-28T16:00:00.000Z"
+    },
+    {
+      "id": "proj-purple-range",
+      "workspaceId": "ws-research-lab",
+      "name": "Purple-Team Detection Validation Range",
+      "code": "BNX-2026-LAB",
+      "description": "Controlled synthetic adversary emulation validating SIEM correlation rules and incident containment playbooks in an isolated RFC1918 lab.",
+      "ownerId": "usr-ir-05",
+      "environment": "ISOLATED_LAB",
+      "authorizationStatus": "AUTHORIZED",
+      "startDate": "2026-10-01T00:00:00.000Z",
+      "endDate": "2027-12-31T23:59:59.000Z",
+      "archived": false,
+      "createdAt": "2026-10-01T10:00:00.000Z",
+      "updatedAt": "2026-10-29T07:30:00.000Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr-admin-01",
+      "email": "elena.vance@baron-nexus.io",
+      "displayName": "Elena Vance (Principal SecOps Architect)",
+      "role": "PLATFORM_ADMIN",
+      "team": "Platform Security & Governance",
+      "mfaEnabled": true,
+      "activeSessionCount": 2,
+      "lastActiveAt": "2026-10-29T09:15:00.000Z"
+    },
+    {
+      "id": "usr-mgr-02",
+      "email": "marcus.sterling@baron-nexus.io",
+      "displayName": "Marcus Sterling (Red/Blue Lead)",
+      "role": "SECURITY_MANAGER",
+      "team": "Offensive & Defensive Assurance",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-29T08:50:00.000Z"
+    },
+    {
+      "id": "usr-pentest-03",
+      "email": "tariq.almansoor@baron-nexus.io",
+      "displayName": "Tariq Al-Mansoor (Lead Penetration Tester)",
+      "role": "PENETRATION_TESTER",
+      "team": "Authorized Assessment Unit",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-29T09:05:00.000Z"
+    },
+    {
+      "id": "usr-analyst-04",
+      "email": "sophia.chen@baron-nexus.io",
+      "displayName": "Sophia Chen (SOC Tier-3 Analyst)",
+      "role": "SECURITY_ANALYST",
+      "team": "Threat Detection & SOC",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-29T09:12:00.000Z"
+    },
+    {
+      "id": "usr-ir-05",
+      "email": "david.kovacs@baron-nexus.io",
+      "displayName": "David Kovacs (Incident Commander)",
+      "role": "INCIDENT_RESPONDER",
+      "team": "CSIRT & Forensics",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-29T08:20:00.000Z"
+    },
+    {
+      "id": "usr-audit-06",
+      "email": "claire.dubois@baron-nexus.io",
+      "displayName": "Claire Dubois (External Compliance Auditor)",
+      "role": "AUDITOR",
+      "team": "GRC & ISO-27001 Assurance",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-28T17:40:00.000Z"
+    },
+    {
+      "id": "usr-viewer-07",
+      "email": "observer@baron-nexus.io",
+      "displayName": "Executive Read-Only Observer",
+      "role": "READ_ONLY_VIEWER",
+      "team": "Executive Leadership",
+      "mfaEnabled": true,
+      "activeSessionCount": 1,
+      "lastActiveAt": "2026-10-28T14:10:00.000Z"
+    }
+  ],
+  "memberships": [
+    {
+      "userId": "usr-admin-01",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "PLATFORM_ADMIN",
+      "grantedBy": "system",
+      "grantedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-admin-01",
+      "projectId": "proj-k8s-zero-trust",
+      "projectRole": "PLATFORM_ADMIN",
+      "grantedBy": "system",
+      "grantedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-admin-01",
+      "projectId": "proj-purple-range",
+      "projectRole": "PLATFORM_ADMIN",
+      "grantedBy": "system",
+      "grantedAt": "2026-09-01T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-mgr-02",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "SECURITY_MANAGER",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-02T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-mgr-02",
+      "projectId": "proj-k8s-zero-trust",
+      "projectRole": "SECURITY_MANAGER",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-02T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-pentest-03",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "PENETRATION_TESTER",
+      "grantedBy": "usr-mgr-02",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-pentest-03",
+      "projectId": "proj-k8s-zero-trust",
+      "projectRole": "PENETRATION_TESTER",
+      "grantedBy": "usr-mgr-02",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-analyst-04",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "SECURITY_ANALYST",
+      "grantedBy": "usr-mgr-02",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-analyst-04",
+      "projectId": "proj-purple-range",
+      "projectRole": "SECURITY_ANALYST",
+      "grantedBy": "usr-mgr-02",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-ir-05",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "INCIDENT_RESPONDER",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-ir-05",
+      "projectId": "proj-purple-range",
+      "projectRole": "SECURITY_MANAGER",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-audit-06",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "AUDITOR",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-10T00:00:00.000Z"
+    },
+    {
+      "userId": "usr-viewer-07",
+      "projectId": "proj-sovereign-cloud",
+      "projectRole": "READ_ONLY_VIEWER",
+      "grantedBy": "usr-admin-01",
+      "grantedAt": "2026-09-12T00:00:00.000Z"
+    }
+  ],
+  "scopes": [
+    {
+      "id": "scope-sovereign-prod",
+      "projectId": "proj-sovereign-cloud",
+      "name": "Sovereign Core Banking Rules of Engagement (RoE #2026-09)",
+      "authorizedDomains": [
+        "*.baron-corp.internal",
+        "*.api.baron-financial.io",
+        "gateway.baron-financial.io"
+      ],
+      "authorizedCidrs": [
+        "10.24.0.0/16",
+        "172.22.10.0/24"
+      ],
+      "authorizedAssets": [
+        "gateway.baron-financial.io",
+        "payments.api.baron-financial.io",
+        "auth.api.baron-financial.io",
+        "ledger-db.baron-corp.internal",
+        "k8s-ingress.baron-corp.internal"
+      ],
+      "exclusions": [
+        "swift-hsm-prod.baron-corp.internal",
+        "payroll.baron-corp.internal",
+        "10.24.250.0/24"
+      ],
+      "allowedEnvironments": [
+        "PRODUCTION",
+        "STAGING",
+        "CLOUD_INFRA"
+      ],
+      "windowStart": "2026-01-01T00:00:00.000Z",
+      "windowEnd": "2027-12-31T23:59:59.000Z",
+      "authorizedBy": "Elena Vance (CISO Sign-off #ROE-9941)",
+      "authorizationStatus": "ACTIVE",
+      "allowActiveProbing": true,
+      "allowDestructiveChecks": false,
+      "maxRequestsPerSecond": 30,
+      "maxConcurrency": 4,
+      "updatedAt": "2026-10-25T14:00:00.000Z"
+    },
+    {
+      "id": "scope-k8s-mesh",
+      "projectId": "proj-k8s-zero-trust",
+      "name": "Zero-Trust Staging Mesh Scope",
+      "authorizedDomains": [
+        "*.mesh-staging.baron.internal"
+      ],
+      "authorizedCidrs": [
+        "10.88.0.0/16"
+      ],
+      "authorizedAssets": [
+        "eks-control.mesh-staging.baron.internal",
+        "registry.mesh-staging.baron.internal"
+      ],
+      "exclusions": [
+        "billing-db.mesh-staging.baron.internal"
+      ],
+      "allowedEnvironments": [
+        "STAGING",
+        "CLOUD_INFRA"
+      ],
+      "windowStart": "2026-01-01T00:00:00.000Z",
+      "windowEnd": "2027-12-31T23:59:59.000Z",
+      "authorizedBy": "Marcus Sterling",
+      "authorizationStatus": "ACTIVE",
+      "allowActiveProbing": true,
+      "allowDestructiveChecks": false,
+      "maxRequestsPerSecond": 50,
+      "maxConcurrency": 6,
+      "updatedAt": "2026-10-20T11:00:00.000Z"
+    },
+    {
+      "id": "scope-purple-lab",
+      "projectId": "proj-purple-range",
+      "name": "Isolated Lab Range Authorization",
+      "authorizedDomains": [
+        "*.range.baron-lab.local"
+      ],
+      "authorizedCidrs": [
+        "192.168.200.0/24"
+      ],
+      "authorizedAssets": [
+        "sim-ad-dc01.range.baron-lab.local",
+        "sim-web-target.range.baron-lab.local"
+      ],
+      "exclusions": [
+        "range-hypervisor.range.baron-lab.local"
+      ],
+      "allowedEnvironments": [
+        "ISOLATED_LAB"
+      ],
+      "windowStart": "2026-01-01T00:00:00.000Z",
+      "windowEnd": "2027-12-31T23:59:59.000Z",
+      "authorizedBy": "David Kovacs",
+      "authorizationStatus": "ACTIVE",
+      "allowActiveProbing": true,
+      "allowDestructiveChecks": false,
+      "maxRequestsPerSecond": 100,
+      "maxConcurrency": 8,
+      "updatedAt": "2026-10-18T09:00:00.000Z"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ast-01",
+      "projectId": "proj-sovereign-cloud",
+      "type": "API_ENDPOINT",
+      "displayName": "Public Payment Gateway API",
+      "address": "payments.api.baron-financial.io",
+      "environment": "PRODUCTION",
+      "owner": "Core Payments Platform Team",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "INTERNET_FACING",
+      "tags": [
+        "pci-dss-tier1",
+        "envoy-gateway",
+        "graphql-rest"
+      ],
+      "discoverySource": "Authorized DNS & OpenAPI Spec Inventory",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "Envoy 1.31",
+        "Node.js 22",
+        "TLS 1.3",
+        "OAuth2/OIDC"
+      ],
+      "openServices": [
+        {
+          "port": 443,
+          "protocol": "TCP",
+          "service": "HTTPS / Envoy API Gateway",
+          "tlsStatus": "TLS 1.3 Valid (Let’s Encrypt E5)"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Primary external ingress for merchant token exchanges.",
+      "firstSeenAt": "2026-09-02T10:00:00.000Z",
+      "lastSeenAt": "2026-10-29T08:45:00.000Z"
+    },
+    {
+      "id": "ast-02",
+      "projectId": "proj-sovereign-cloud",
+      "type": "WEB_APP",
+      "displayName": "Institutional Treasury Portal",
+      "address": "gateway.baron-financial.io",
+      "environment": "PRODUCTION",
+      "owner": "Institutional Banking Engineering",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "INTERNET_FACING",
+      "tags": [
+        "treasury",
+        "sso-saml",
+        "waf-protected"
+      ],
+      "discoverySource": "Certificate Transparency & Scope Registry",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "React 19",
+        "Cloudflare Enterprise WAF",
+        "Nginx 1.27"
+      ],
+      "openServices": [
+        {
+          "port": 443,
+          "protocol": "TCP",
+          "service": "HTTPS Web Portal",
+          "tlsStatus": "TLS 1.3 Valid"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Requires FIDO2 WebAuthn step-up for wire approvals.",
+      "firstSeenAt": "2026-09-02T10:05:00.000Z",
+      "lastSeenAt": "2026-10-29T08:40:00.000Z"
+    },
+    {
+      "id": "ast-03",
+      "projectId": "proj-sovereign-cloud",
+      "type": "CONTAINER_K8S",
+      "displayName": "Production EKS Ingress & Worker Mesh",
+      "address": "k8s-ingress.baron-corp.internal",
+      "environment": "CLOUD_INFRA",
+      "owner": "Cloud Platform SRE",
+      "criticality": "HIGH",
+      "exposure": "INTERNAL_CORP",
+      "tags": [
+        "aws-eks",
+        "istio-mesh",
+        "container-runtime"
+      ],
+      "discoverySource": "AWS Config & Kube-State-Metrics Sync (Simulated)",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "Kubernetes 1.31",
+        "containerd 2.0",
+        "Istio 1.23"
+      ],
+      "openServices": [
+        {
+          "port": 6443,
+          "protocol": "TCP",
+          "service": "Kube-API Server",
+          "tlsStatus": "mTLS Enforced"
+        },
+        {
+          "port": 15012,
+          "protocol": "TCP",
+          "service": "Istiod Control Plane",
+          "tlsStatus": "mTLS Enforced"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Hosts payment worker pods and settlement microservices.",
+      "firstSeenAt": "2026-09-04T12:00:00.000Z",
+      "lastSeenAt": "2026-10-29T08:30:00.000Z"
+    },
+    {
+      "id": "ast-04",
+      "projectId": "proj-sovereign-cloud",
+      "type": "DATABASE",
+      "displayName": "Core Settlement PostgreSQL Cluster",
+      "address": "ledger-db.baron-corp.internal",
+      "environment": "PRODUCTION",
+      "owner": "Data Reliability Engineering",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "ISOLATED_VPC",
+      "tags": [
+        "postgresql-16",
+        "kms-encrypted",
+        "crown-jewel"
+      ],
+      "discoverySource": "Cloud VPC Flow & Terraform State Import",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "PostgreSQL 16.4",
+        "AWS RDS Multi-AZ",
+        "PgBouncer"
+      ],
+      "openServices": [
+        {
+          "port": 5432,
+          "protocol": "TCP",
+          "service": "PostgreSQL TLS",
+          "tlsStatus": "TLS 1.3 Require-Verify"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Crown-jewel financial ledger. Restricted to settlement-worker IAM role.",
+      "firstSeenAt": "2026-09-04T12:15:00.000Z",
+      "lastSeenAt": "2026-10-29T08:00:00.000Z"
+    },
+    {
+      "id": "ast-05",
+      "projectId": "proj-sovereign-cloud",
+      "type": "IDENTITY",
+      "displayName": "IAM Role: prod-payment-worker-sa",
+      "address": "auth.api.baron-financial.io",
+      "environment": "CLOUD_INFRA",
+      "owner": "IAM Governance Team",
+      "criticality": "HIGH",
+      "exposure": "INTERNAL_CORP",
+      "tags": [
+        "aws-iam",
+        "irsa-federated",
+        "privileged-role"
+      ],
+      "discoverySource": "IAM Access Analyzer Import",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "AWS IAM OIDC Federation",
+        "HashiCorp Vault Agent"
+      ],
+      "openServices": [
+        {
+          "port": 8200,
+          "protocol": "TCP",
+          "service": "Vault Token Broker",
+          "tlsStatus": "TLS 1.3"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Workload identity assumed by payment gateway pods.",
+      "firstSeenAt": "2026-09-10T09:00:00.000Z",
+      "lastSeenAt": "2026-10-29T07:55:00.000Z"
+    },
+    {
+      "id": "ast-06",
+      "projectId": "proj-sovereign-cloud",
+      "type": "HOST_SERVER",
+      "displayName": "SWIFT Hardware Security Module Host (EXCLUDED)",
+      "address": "swift-hsm-prod.baron-corp.internal",
+      "environment": "PRODUCTION",
+      "owner": "Cryptography & Key Custody",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "AIR_GAPPED",
+      "tags": [
+        "excluded-from-active-testing",
+        "fips-140-3"
+      ],
+      "discoverySource": "CMDB Baseline Sync",
+      "verificationStatus": "EXCLUDED",
+      "technologies": [
+        "Thales Luna HSM Appliance"
+      ],
+      "openServices": [],
+      "isSynthetic": true,
+      "notes": "Explicitly excluded in RoE #2026-09. Any active assessment attempt must be blocked.",
+      "firstSeenAt": "2026-09-01T00:00:00.000Z",
+      "lastSeenAt": "2026-10-29T06:00:00.000Z"
+    },
+    {
+      "id": "ast-07",
+      "projectId": "proj-k8s-zero-trust",
+      "type": "CONTAINER_K8S",
+      "displayName": "Staging Container Registry & Admission Webhook",
+      "address": "registry.mesh-staging.baron.internal",
+      "environment": "STAGING",
+      "owner": "DevSecOps Supply Chain Team",
+      "criticality": "HIGH",
+      "exposure": "INTERNAL_CORP",
+      "tags": [
+        "harbor-registry",
+        "cosign-attestation"
+      ],
+      "discoverySource": "Registry Inventory",
+      "verificationStatus": "VERIFIED_IN_SCOPE",
+      "technologies": [
+        "Harbor 2.11",
+        "Kyverno 1.12",
+        "Trivy Scanner"
+      ],
+      "openServices": [
+        {
+          "port": 443,
+          "protocol": "TCP",
+          "service": "OCI Registry HTTPS",
+          "tlsStatus": "TLS 1.3"
+        }
+      ],
+      "isSynthetic": true,
+      "notes": "Container supply-chain signing validation target.",
+      "firstSeenAt": "2026-10-02T10:00:00.000Z",
+      "lastSeenAt": "2026-10-28T18:00:00.000Z"
+    }
+  ],
+  "assessmentProfiles": [
+    {
+      "id": "prof-passive-recon",
+      "name": "Authorized Passive Reconnaissance & Certificate Metadata Audit",
+      "category": "RECON_PASSIVE",
+      "description": "Non-intrusive review of DNS records, CT log certificate metadata, and known service inventory against approved scope.",
+      "requiresApproval": false,
+      "isNonDestructive": true,
+      "providerType": "SIMULATED",
+      "timeoutSeconds": 120
+    },
+    {
+      "id": "prof-tls-headers",
+      "name": "Safe TLS Cipher, HSTS & Security Header Validation",
+      "category": "TLS_HEADERS",
+      "description": "Validates TLS 1.2/1.3 cipher negotiation, certificate chain expiration, CSP, HSTS, and CORS headers without payload injection.",
+      "requiresApproval": false,
+      "isNonDestructive": true,
+      "providerType": "SIMULATED",
+      "timeoutSeconds": 180
+    },
+    {
+      "id": "prof-api-auth-boundary",
+      "name": "API Schema & OAuth2 Object-Level Authorization (BOLA) Safe Verification",
+      "category": "API_SCHEMA",
+      "description": "Performs non-destructive OpenAPI schema conformance and read-only token scope boundary checks using synthetic test principals.",
+      "requiresApproval": true,
+      "isNonDestructive": true,
+      "providerType": "SIMULATED",
+      "timeoutSeconds": 300
+    },
+    {
+      "id": "prof-cloud-k8s-posture",
+      "name": "Cloud IAM, Kubernetes PodSecurity & Container CVE Posture Audit",
+      "category": "CLOUD_POSTURE",
+      "description": "Inspects Kubernetes PodSecurityStandards, RBAC cluster-admin bindings, IRSA trust policies, and container image SBOMs.",
+      "requiresApproval": true,
+      "isNonDestructive": true,
+      "providerType": "SIMULATED",
+      "timeoutSeconds": 240
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-2001",
+      "workspaceId": "ws-enterprise-core",
+      "projectId": "proj-sovereign-cloud",
+      "profileId": "prof-api-auth-boundary",
+      "profileName": "API Schema & OAuth2 Object-Level Authorization (BOLA) Safe Verification",
+      "title": "Q4 Core Payment API Boundary Verification",
+      "requestedTargets": [
+        "payments.api.baron-financial.io",
+        "auth.api.baron-financial.io"
+      ],
+      "scopeValidation": {
+        "passed": true,
+        "checkedAt": "2026-10-24T14:00:00.000Z",
+        "allowedTargets": [
+          "payments.api.baron-financial.io",
+          "auth.api.baron-financial.io"
+        ],
+        "rejectedTargets": [],
+        "policyNotes": [
+          "Validated against RoE #2026-09. Non-destructive mode enforced."
+        ]
+      },
+      "approvalState": "APPROVED",
+      "approvedBy": "elena.vance@baron-nexus.io",
+      "approvedAt": "2026-10-24T14:05:00.000Z",
+      "status": "COMPLETED",
+      "executionMode": "SIMULATED",
+      "progressPercent": 100,
+      "startedAt": "2026-10-24T14:06:00.000Z",
+      "completedAt": "2026-10-24T14:25:00.000Z",
+      "resourceLimits": {
+        "maxConcurrency": 4,
+        "rateLimitRps": 25,
+        "timeoutSec": 300
+      },
+      "findingIds": [
+        "fnd-1001",
+        "fnd-1002"
+      ],
+      "evidenceIds": [
+        "ev-3001",
+        "ev-3002"
+      ],
+      "logs": [
+        {
+          "timestamp": "2026-10-24T14:00:00.000Z",
+          "level": "INFO",
+          "message": "Scope validation passed for 2 targets."
+        },
+        {
+          "timestamp": "2026-10-24T14:05:00.000Z",
+          "level": "INFO",
+          "message": "Approved by Elena Vance (PLATFORM_ADMIN)."
+        },
+        {
+          "timestamp": "2026-10-24T14:06:00.000Z",
+          "level": "INFO",
+          "message": "Started safe simulated API boundary verification."
+        },
+        {
+          "timestamp": "2026-10-24T14:25:00.000Z",
+          "level": "INFO",
+          "message": "Completed verification. 2 findings recorded with SHA-256 evidence."
+        }
+      ],
+      "isSynthetic": true,
+      "createdBy": "tariq.almansoor@baron-nexus.io",
+      "createdAt": "2026-10-24T13:58:00.000Z"
+    },
+    {
+      "id": "job-2002",
+      "workspaceId": "ws-enterprise-core",
+      "projectId": "proj-sovereign-cloud",
+      "profileId": "prof-cloud-k8s-posture",
+      "profileName": "Cloud IAM, Kubernetes PodSecurity & Container CVE Posture Audit",
+      "title": "Weekly EKS PodSecurity & IAM Trust Review",
+      "requestedTargets": [
+        "k8s-ingress.baron-corp.internal"
+      ],
+      "scopeValidation": {
+        "passed": true,
+        "checkedAt": "2026-10-28T11:00:00.000Z",
+        "allowedTargets": [
+          "k8s-ingress.baron-corp.internal"
+        ],
+        "rejectedTargets": [],
+        "policyNotes": [
+          "Authorized internal cloud infrastructure target."
+        ]
+      },
+      "approvalState": "PENDING",
+      "status": "AWAITING_APPROVAL",
+      "executionMode": "SIMULATED",
+      "progressPercent": 0,
+      "resourceLimits": {
+        "maxConcurrency": 2,
+        "rateLimitRps": 15,
+        "timeoutSec": 240
+      },
+      "findingIds": [],
+      "evidenceIds": [],
+      "logs": [
+        {
+          "timestamp": "2026-10-28T11:00:00.000Z",
+          "level": "INFO",
+          "message": "Scope validation succeeded for k8s-ingress.baron-corp.internal."
+        },
+        {
+          "timestamp": "2026-10-28T11:00:02.000Z",
+          "level": "INFO",
+          "message": "Profile requires Security Manager or Platform Admin approval before execution."
+        }
+      ],
+      "isSynthetic": true,
+      "createdBy": "tariq.almansoor@baron-nexus.io",
+      "createdAt": "2026-10-28T11:00:00.000Z"
+    }
+  ],
+  "findings": [
+    {
+      "id": "fnd-1001",
+      "projectId": "proj-sovereign-cloud",
+      "assetId": "ast-01",
+      "assetName": "payments.api.baron-financial.io",
+      "jobId": "job-2001",
+      "title": "Overly Permissive OAuth2 Scope Allows Cross-Tenant Read on /v2/settlements/{id}",
+      "category": "WEB_API",
+      "severity": "CRITICAL",
+      "confidence": 96,
+      "status": "CONFIRMED",
+      "cvssScore": 9.1,
+      "cweId": "CWE-639",
+      "description": "Non-destructive boundary verification confirmed that a synthetic merchant token with `settlements:read` scope can query settlement metadata belonging to adjacent tenant IDs due to missing tenant_id claim binding in the Envoy Lua filter.",
+      "reproductionSteps": "1. Authenticate with synthetic test merchant principal `merch_test_alpha`.\n2. Issue GET /v2/settlements/stl_test_beta_09 with read-only synthetic token.\n3. Observe HTTP 200 response returning non-sensitive synthetic test metadata across tenant boundary.",
+      "remediationPlan": "Enforce strict `jwt.claims.tenant_id == resource.owner_tenant_id` policy in OPA/Envoy external authorization filter and add unit regression tests.",
+      "owner": "Core Payments Platform Team",
+      "remediationDeadline": "2026-11-05T23:59:59.000Z",
+      "evidenceIds": [
+        "ev-3001"
+      ],
+      "sourceProvider": "Baron Safe API Boundary Validator (Simulated Lab Proof)",
+      "executionOrigin": "ACTUAL_ASSESSMENT",
+      "isVerified": true,
+      "firstSeenAt": "2026-10-24T14:20:00.000Z",
+      "lastSeenAt": "2026-10-29T08:15:00.000Z"
+    },
+    {
+      "id": "fnd-1002",
+      "projectId": "proj-sovereign-cloud",
+      "assetId": "ast-05",
+      "assetName": "auth.api.baron-financial.io (prod-payment-worker-sa)",
+      "jobId": "job-2001",
+      "title": "IAM Workload Identity Role Permits Wildcard S3 & RDS Snapshot Describe Actions",
+      "category": "IAM_IDENTITY",
+      "severity": "HIGH",
+      "confidence": 92,
+      "status": "IN_PROGRESS",
+      "cvssScore": 7.8,
+      "cweId": "CWE-269",
+      "description": "Policy inspection of IAM role `prod-payment-worker-sa` identified `rds:DescribeDBSnapshots` and `s3:ListBucket` on `*` resources, enabling lateral reconnaissance if a payment worker pod is compromised.",
+      "reproductionSteps": "1. Inspect IAM policy document `arn:aws:iam::112233445566:policy/PaymentWorkerPolicy-v4`.\n2. Verify wildcard resource statement on `rds:Describe*` and `s3:List*`.",
+      "remediationPlan": "Scope IAM policy resources to explicit ARN prefixes and remove snapshot enumeration permissions.",
+      "owner": "IAM Governance Team",
+      "remediationDeadline": "2026-11-12T23:59:59.000Z",
+      "evidenceIds": [
+        "ev-3002"
+      ],
+      "sourceProvider": "Cloud IAM Posture Inspector (Simulated)",
+      "executionOrigin": "SYNTHETIC_DEMO",
+      "isVerified": true,
+      "firstSeenAt": "2026-10-25T11:00:00.000Z",
+      "lastSeenAt": "2026-10-29T08:15:00.000Z"
+    },
+    {
+      "id": "fnd-1003",
+      "projectId": "proj-sovereign-cloud",
+      "assetId": "ast-03",
+      "assetName": "k8s-ingress.baron-corp.internal",
+      "jobId": "job-2002",
+      "title": "Worker Pods Missing ReadOnlyRootFilesystem and Seccomp RuntimeDefault Profile",
+      "category": "CLOUD_CONTAINER",
+      "severity": "MEDIUM",
+      "confidence": 89,
+      "status": "REMEDIATION_PLANNED",
+      "cvssScore": 6.4,
+      "cweId": "CWE-250",
+      "description": "Kubernetes admission review shows 4 deployment manifests in `payments-prod` namespace running with writable root filesystems and unconfined seccomp profiles.",
+      "reproductionSteps": "Review exported K8s Deployment YAML for `settlement-batch-worker` in `payments-prod` namespace.",
+      "remediationPlan": "Set `securityContext.readOnlyRootFilesystem: true` and `seccompProfile.type: RuntimeDefault` via Kyverno cluster policy.",
+      "owner": "Cloud Platform SRE",
+      "remediationDeadline": "2026-11-20T23:59:59.000Z",
+      "evidenceIds": [
+        "ev-3003"
+      ],
+      "sourceProvider": "SARIF Kube-Linter Import",
+      "executionOrigin": "IMPORTED_SARIF",
+      "isVerified": true,
+      "firstSeenAt": "2026-10-26T09:30:00.000Z",
+      "lastSeenAt": "2026-10-28T16:00:00.000Z"
+    },
+    {
+      "id": "fnd-1004",
+      "projectId": "proj-sovereign-cloud",
+      "assetId": "ast-02",
+      "assetName": "gateway.baron-financial.io",
+      "title": "Candidate Missing Cross-Origin-Opener-Policy (COOP) Header on Static Help Subpath",
+      "category": "CRYPTO_TLS",
+      "severity": "LOW",
+      "confidence": 68,
+      "status": "NEEDS_VALIDATION",
+      "cvssScore": 3.7,
+      "cweId": "CWE-693",
+      "description": "Passive header inspection noticed `/docs/*` responses omit `Cross-Origin-Opener-Policy: same-origin`. Requires validation to confirm whether authenticated session state is accessible from `/docs`.",
+      "reproductionSteps": "Send HEAD request to `https://gateway.baron-financial.io/docs/index.html` and inspect response headers.",
+      "remediationPlan": "Add `Cross-Origin-Opener-Policy: same-origin` to Nginx server block.",
+      "owner": "Institutional Banking Engineering",
+      "remediationDeadline": "2026-12-01T23:59:59.000Z",
+      "evidenceIds": [
+        "ev-3004"
+      ],
+      "sourceProvider": "Passive Header Inspector (Simulated)",
+      "executionOrigin": "SYNTHETIC_DEMO",
+      "isVerified": false,
+      "firstSeenAt": "2026-10-27T15:10:00.000Z",
+      "lastSeenAt": "2026-10-29T07:00:00.000Z"
+    },
+    {
+      "id": "fnd-1005",
+      "projectId": "proj-sovereign-cloud",
+      "assetId": "ast-03",
+      "assetName": "k8s-ingress.baron-corp.internal",
+      "title": "CVE-2024-45337 in Go x/crypto/ssh Library Dependency (Unverified Reachability)",
+      "category": "DEPENDENCY_SCA",
+      "severity": "HIGH",
+      "confidence": 55,
+      "status": "NEEDS_VALIDATION",
+      "cveId": "CVE-2024-45337",
+      "cvssScore": 8.2,
+      "cweId": "CWE-287",
+      "description": "Container image SBOM lists `golang.org/x/crypto v0.28.0` in an auxiliary diagnostic sidecar. Version string matches advisory, but SSH server callback is not invoked in runtime code. Requires reachability verification before confirming.",
+      "reproductionSteps": "Inspect CycloneDX SBOM and call-graph analysis for `diag-sidecar:1.4.2`.",
+      "remediationPlan": "Bump `golang.org/x/crypto` to `v0.31.0+` in base image build pipeline.",
+      "owner": "Cloud Platform SRE",
+      "remediationDeadline": "2026-11-18T23:59:59.000Z",
+      "evidenceIds": [],
+      "sourceProvider": "Container SBOM Analyzer (Simulated)",
+      "executionOrigin": "SYNTHETIC_DEMO",
+      "isVerified": false,
+      "firstSeenAt": "2026-10-28T10:00:00.000Z",
+      "lastSeenAt": "2026-10-29T07:00:00.000Z"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-3001",
+      "projectId": "proj-sovereign-cloud",
+      "linkedEntityType": "FINDING",
+      "linkedEntityId": "fnd-1001",
+      "title": "Redacted HTTP Trace: Synthetic Tenant Boundary Verification",
+      "artifactType": "HTTP_EXCHANGE",
+      "sha256Digest": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+      "contentSummary": "GET /v2/settlements/stl_test_beta_09 returned 200 OK to principal merch_test_alpha.",
+      "rawPayloadRedacted": "GET /v2/settlements/stl_test_beta_09 HTTP/2\nHost: payments.api.baron-financial.io\nAuthorization: Bearer [REDACTED_SYNTHETIC_TEST_TOKEN]\nX-Baron-Assessment-ID: job-2001\n\nHTTP/2 200 OK\nContent-Type: application/json\n{\"settlement_id\":\"stl_test_beta_09\",\"tenant_id\":\"tenant_beta_synthetic\",\"status\":\"SETTLED\",\"synthetic_marker\":true}",
+      "collectedBy": "tariq.almansoor@baron-nexus.io",
+      "collectedAt": "2026-10-24T14:22:10.000Z",
+      "isSynthetic": true
+    },
+    {
+      "id": "ev-3002",
+      "projectId": "proj-sovereign-cloud",
+      "linkedEntityType": "FINDING",
+      "linkedEntityId": "fnd-1002",
+      "title": "IAM Policy Diff: prod-payment-worker-sa Wildcard Actions",
+      "artifactType": "CONFIG_DIFF",
+      "sha256Digest": "4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+      "contentSummary": "IAM role policy allows rds:DescribeDBSnapshots and s3:ListBucket on Resource: *",
+      "rawPayloadRedacted": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\"rds:DescribeDBSnapshots\", \"s3:ListBucket\"],\n      \"Resource\": \"*\"\n    }\n  ]\n}",
+      "collectedBy": "elena.vance@baron-nexus.io",
+      "collectedAt": "2026-10-25T11:04:00.000Z",
+      "isSynthetic": true
+    },
+    {
+      "id": "ev-3003",
+      "projectId": "proj-sovereign-cloud",
+      "linkedEntityType": "FINDING",
+      "linkedEntityId": "fnd-1003",
+      "title": "SARIF Kube-Linter Artifact: PodSecurity Context Audit",
+      "artifactType": "SARIF_REPORT",
+      "sha256Digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "contentSummary": "Kube-Linter SARIF check on payments-prod/settlement-batch-worker deployment.",
+      "rawPayloadRedacted": "ruleId: no-read-only-root-fs\nlevel: warning\nlocation: deployments/settlement-batch-worker.yaml:42\nmessage: Container \"worker\" does not set readOnlyRootFilesystem: true",
+      "collectedBy": "marcus.sterling@baron-nexus.io",
+      "collectedAt": "2026-10-26T09:31:00.000Z",
+      "isSynthetic": true
+    },
+    {
+      "id": "ev-3004",
+      "projectId": "proj-sovereign-cloud",
+      "linkedEntityType": "FINDING",
+      "linkedEntityId": "fnd-1004",
+      "title": "TLS & HTTP Security Header Snapshot: gateway.baron-financial.io",
+      "artifactType": "TLS_CERT_META",
+      "sha256Digest": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730",
+      "contentSummary": "TLS 1.3 TLS_AES_256_GCM_SHA384 verified; COOP header absent on /docs/ path.",
+      "rawPayloadRedacted": "Protocol: TLSv1.3\nCipher: TLS_AES_256_GCM_SHA384\nStrict-Transport-Security: max-age=63072000; includeSubDomains; preload\nContent-Security-Policy: default-src 'self'\nCross-Origin-Opener-Policy: [MISSING on /docs/index.html]",
+      "collectedBy": "sophia.chen@baron-nexus.io",
+      "collectedAt": "2026-10-27T15:11:00.000Z",
+      "isSynthetic": true
+    }
+  ],
+  "graphNodes": [
+    {
+      "id": "gn-api-gw",
+      "projectId": "proj-sovereign-cloud",
+      "label": "payments.api.baron-financial.io",
+      "nodeType": "ASSET",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "INTERNET_FACING",
+      "privilegeLevel": "USER",
+      "verifiedFindingsCount": 1,
+      "metadata": {
+        "assetId": "ast-01",
+        "zone": "DMZ-Public-Edge",
+        "tech": "Envoy 1.31"
+      }
+    },
+    {
+      "id": "gn-portal",
+      "projectId": "proj-sovereign-cloud",
+      "label": "gateway.baron-financial.io",
+      "nodeType": "ASSET",
+      "criticality": "HIGH",
+      "exposure": "INTERNET_FACING",
+      "privilegeLevel": "USER",
+      "verifiedFindingsCount": 0,
+      "metadata": {
+        "assetId": "ast-02",
+        "zone": "DMZ-Public-Edge",
+        "tech": "Nginx 1.27"
+      }
+    },
+    {
+      "id": "gn-k8s-worker",
+      "projectId": "proj-sovereign-cloud",
+      "label": "k8s-ingress.baron-corp.internal",
+      "nodeType": "CLOUD_RESOURCE",
+      "criticality": "HIGH",
+      "exposure": "INTERNAL_CORP",
+      "privilegeLevel": "SERVICE_ACCOUNT",
+      "verifiedFindingsCount": 1,
+      "metadata": {
+        "assetId": "ast-03",
+        "cluster": "eks-prod-eu-west-1",
+        "namespace": "payments-prod"
+      }
+    },
+    {
+      "id": "gn-iam-sa",
+      "projectId": "proj-sovereign-cloud",
+      "label": "IAM: prod-payment-worker-sa",
+      "nodeType": "IDENTITY",
+      "criticality": "HIGH",
+      "exposure": "INTERNAL_CORP",
+      "privilegeLevel": "ADMIN",
+      "verifiedFindingsCount": 1,
+      "metadata": {
+        "assetId": "ast-05",
+        "federation": "OIDC IRSA",
+        "policy": "Wildcard Describe"
+      }
+    },
+    {
+      "id": "gn-ledger-db",
+      "projectId": "proj-sovereign-cloud",
+      "label": "ledger-db.baron-corp.internal",
+      "nodeType": "ASSET",
+      "criticality": "MISSION_CRITICAL",
+      "exposure": "ISOLATED_VPC",
+      "privilegeLevel": "ROOT_CLUSTER",
+      "verifiedFindingsCount": 0,
+      "metadata": {
+        "assetId": "ast-04",
+        "engine": "PostgreSQL 16.4",
+        "classification": "Crown Jewel Ledger"
+      }
+    }
+  ],
+  "graphEdges": [
+    {
+      "id": "ge-01",
+      "projectId": "proj-sovereign-cloud",
+      "source": "gn-api-gw",
+      "target": "gn-k8s-worker",
+      "relationshipType": "CAN_REACH_NETWORK",
+      "derivation": "OBSERVED",
+      "confidence": 98,
+      "evidenceRef": "ev-3001",
+      "observedAt": "2026-10-25T10:00:00.000Z"
+    },
+    {
+      "id": "ge-02",
+      "projectId": "proj-sovereign-cloud",
+      "source": "gn-k8s-worker",
+      "target": "gn-iam-sa",
+      "relationshipType": "ASSUMES_ROLE",
+      "derivation": "OBSERVED",
+      "confidence": 95,
+      "evidenceRef": "ev-3002",
+      "observedAt": "2026-10-25T11:00:00.000Z"
+    },
+    {
+      "id": "ge-03",
+      "projectId": "proj-sovereign-cloud",
+      "source": "gn-iam-sa",
+      "target": "gn-ledger-db",
+      "relationshipType": "AUTHENTICATES_AS",
+      "derivation": "OBSERVED",
+      "confidence": 92,
+      "evidenceRef": "ev-3002",
+      "observedAt": "2026-10-25T11:05:00.000Z"
+    },
+    {
+      "id": "ge-04",
+      "projectId": "proj-sovereign-cloud",
+      "source": "gn-portal",
+      "target": "gn-iam-sa",
+      "relationshipType": "TRUSTS_IDENTITY",
+      "derivation": "INFERRED_HYPOTHESIS",
+      "confidence": 64,
+      "evidenceRef": "ev-3004",
+      "observedAt": "2026-10-27T15:15:00.000Z"
+    }
+  ],
+  "threatIndicators": [
+    {
+      "id": "ioc-4001",
+      "projectId": "proj-sovereign-cloud",
+      "iocType": "IPV4",
+      "value": "198.51.100.84",
+      "threatLabels": [
+        "oauth-token-stuffing",
+        "credential-replay-botnet",
+        "asn-autonomous-probe"
+      ],
+      "sourceAttribution": "FS-ISAC Financial Threat Feed (Simulated Demo Record)",
+      "sourceVerified": true,
+      "confidence": 88,
+      "tlpMarking": "TLP:AMBER",
+      "relatedAssetIds": [
+        "ast-01"
+      ],
+      "relatedFindingIds": [
+        "fnd-1001"
+      ],
+      "relatedIncidentIds": [
+        "inc-6001"
+      ],
+      "firstObservedAt": "2026-10-27T04:12:00.000Z",
+      "expiresAt": "2026-12-31T23:59:59.000Z",
+      "isSynthetic": true
+    },
+    {
+      "id": "ioc-4002",
+      "projectId": "proj-sovereign-cloud",
+      "iocType": "DOMAIN",
+      "value": "auth-baron-financial-verify.example.net",
+      "threatLabels": [
+        "lookalike-domain",
+        "typosquat-candidate"
+      ],
+      "sourceAttribution": "Certificate Transparency Watcher (Unverified External Feed)",
+      "sourceVerified": false,
+      "confidence": 52,
+      "tlpMarking": "TLP:GREEN",
+      "relatedAssetIds": [
+        "ast-02"
+      ],
+      "relatedFindingIds": [],
+      "relatedIncidentIds": [],
+      "firstObservedAt": "2026-10-28T19:00:00.000Z",
+      "expiresAt": "2026-11-30T23:59:59.000Z",
+      "isSynthetic": true
+    },
+    {
+      "id": "ioc-4003",
+      "projectId": "proj-sovereign-cloud",
+      "iocType": "SHA256",
+      "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "threatLabels": [
+        "benign-canary-artifact",
+        "purple-team-marker"
+      ],
+      "sourceAttribution": "Baron Internal Purple-Team Registry",
+      "sourceVerified": true,
+      "confidence": 99,
+      "tlpMarking": "TLP:CLEAR",
+      "relatedAssetIds": [
+        "ast-03"
+      ],
+      "relatedFindingIds": [
+        "fnd-1003"
+      ],
+      "relatedIncidentIds": [],
+      "firstObservedAt": "2026-10-26T09:30:00.000Z",
+      "expiresAt": "2027-06-01T00:00:00.000Z",
+      "isSynthetic": true
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alt-5001",
+      "projectId": "proj-sovereign-cloud",
+      "ruleId": "rule-501",
+      "ruleName": "Cross-Tenant Settlement ID Enumeration Spike on Envoy Gateway",
+      "title": "Anomalous Cross-Tenant GET /v2/settlements Requests from 198.51.100.84",
+      "severity": "HIGH",
+      "confidence": 94,
+      "status": "ESCALATED_TO_INCIDENT",
+      "sourceSystem": "Envoy Gateway Telemetry (Synthetic Demo Stream)",
+      "affectedAssetId": "ast-01",
+      "owner": "sophia.chen@baron-nexus.io",
+      "matchExplanation": "Matched rule-501: 14 sequential requests to /v2/settlements/{id} with mismatched tenant claims within 45 seconds from IP 198.51.100.84.",
+      "normalizedEventJson": "{\"timestamp\":\"2026-10-29T06:42:11.000Z\",\"src_ip\":\"198.51.100.84\",\"dest_host\":\"payments.api.baron-financial.io\",\"http_method\":\"GET\",\"uri_path\":\"/v2/settlements/stl_99412\",\"status_code\":200,\"synthetic_demo_event\":true}",
+      "investigationNotes": [
+        "Correlated source IP 198.51.100.84 with IOC ioc-4001 (FS-ISAC feed).",
+        "Linked directly to confirmed vulnerability fnd-1001."
+      ],
+      "linkedIncidentId": "inc-6001",
+      "isSynthetic": true,
+      "observedAt": "2026-10-29T06:42:11.000Z"
+    },
+    {
+      "id": "alt-5002",
+      "projectId": "proj-sovereign-cloud",
+      "ruleId": "rule-502",
+      "ruleName": "Unexpected AWS RDS Snapshot Enumeration from EKS Pod Role",
+      "title": "DescribeDBSnapshots Invoked by prod-payment-worker-sa During Assessment Window",
+      "severity": "MEDIUM",
+      "confidence": 87,
+      "status": "TRIAGING",
+      "sourceSystem": "AWS CloudTrail Collector (Synthetic Demo Stream)",
+      "affectedAssetId": "ast-05",
+      "owner": "sophia.chen@baron-nexus.io",
+      "matchExplanation": "Matched rule-502: IAM role prod-payment-worker-sa executed rds:DescribeDBSnapshots from EKS node 10.24.18.42.",
+      "normalizedEventJson": "{\"timestamp\":\"2026-10-29T07:15:00.000Z\",\"aws_region\":\"eu-west-1\",\"event_name\":\"DescribeDBSnapshots\",\"principal\":\"arn:aws:sts::112233445566:assumed-role/prod-payment-worker-sa/pod-payment-7c8b\",\"synthetic_demo_event\":true}",
+      "investigationNotes": [
+        "Verifying whether activity originated from authorized assessment job-2001."
+      ],
+      "isSynthetic": true,
+      "observedAt": "2026-10-29T07:15:00.000Z"
+    }
+  ],
+  "detectionRules": [
+    {
+      "id": "rule-501",
+      "name": "Cross-Tenant Settlement ID Enumeration Spike on Envoy Gateway",
+      "version": "2.4.0",
+      "severity": "HIGH",
+      "logSource": "envoy.access_logs",
+      "queryExpression": "service=\"payments-api\" AND path LIKE \"/v2/settlements/%\" AND jwt.tenant_id != response.resource_tenant_id | count() by principal_id > 5 within 2m",
+      "mitreTechnique": "TA0009 / T1213 (Data from Information Repositories)",
+      "enabled": true,
+      "lastTestedAt": "2026-10-28T14:00:00.000Z",
+      "testPassStatus": "PASS",
+      "rationale": "Detects horizontal BOLA/IDOR probing across tenant settlement identifiers."
+    },
+    {
+      "id": "rule-502",
+      "name": "Unexpected AWS RDS Snapshot Enumeration from EKS Pod Role",
+      "version": "1.8.2",
+      "severity": "HIGH",
+      "logSource": "aws.cloudtrail",
+      "queryExpression": "eventSource=\"rds.amazonaws.com\" AND eventName=\"DescribeDBSnapshots\" AND userIdentity.sessionContext.sessionIssuer.userName=\"prod-payment-worker-sa\"",
+      "mitreTechnique": "TA0007 / T1580 (Cloud Infrastructure Discovery)",
+      "enabled": true,
+      "lastTestedAt": "2026-10-28T14:15:00.000Z",
+      "testPassStatus": "PASS",
+      "rationale": "Alerts when workload service accounts invoke control-plane discovery APIs outside normal DB connection operations."
+    },
+    {
+      "id": "rule-503",
+      "name": "Container Runtime Interactive Shell Spawn in Production Namespace",
+      "version": "3.1.0",
+      "severity": "CRITICAL",
+      "logSource": "k8s.audit_falco",
+      "queryExpression": "k8s.ns=\"payments-prod\" AND proc.name IN (\"sh\", \"bash\", \"ash\") AND container.id != \"host\"",
+      "mitreTechnique": "TA0002 / T1609 (Container Administration Command)",
+      "enabled": true,
+      "lastTestedAt": "2026-10-27T10:00:00.000Z",
+      "testPassStatus": "PASS",
+      "rationale": "Identifies interactive exec sessions or unexpected shell invocation inside immutable production containers."
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc-6001",
+      "projectId": "proj-sovereign-cloud",
+      "title": "INC-2026-041: Cross-Tenant Settlement API Boundary Probing & Hotfix Deployment",
+      "description": "Coordinated defensive response to alert alt-5001 and confirmed finding fnd-1001 involving cross-tenant settlement endpoint queries.",
+      "severity": "HIGH",
+      "status": "CONTAINMENT",
+      "assignedResponder": "david.kovacs@baron-nexus.io",
+      "affectedAssetIds": [
+        "ast-01",
+        "ast-05"
+      ],
+      "relatedAlertIds": [
+        "alt-5001"
+      ],
+      "evidenceIds": [
+        "ev-3001"
+      ],
+      "timeline": [
+        {
+          "id": "tl-1",
+          "timestamp": "2026-10-29T06:45:00.000Z",
+          "actor": "sophia.chen@baron-nexus.io",
+          "entry": "Escalated alert alt-5001 to incident INC-2026-041 after correlating with fnd-1001.",
+          "type": "STATE_CHANGE"
+        },
+        {
+          "id": "tl-2",
+          "timestamp": "2026-10-29T07:05:00.000Z",
+          "actor": "david.kovacs@baron-nexus.io",
+          "entry": "Activated API BOLA Triage & Envoy Hotfix Playbook. Requested approval for rate-limit containment policy.",
+          "type": "NOTE"
+        }
+      ],
+      "containmentActions": [
+        {
+          "id": "ca-1",
+          "actionTitle": "Deploy Envoy OPA VirtualPatch Enforcing jwt.tenant_id Match on /v2/settlements/*",
+          "impactLevel": "NON_DISRUPTIVE",
+          "approvalStatus": "EXECUTED_SIMULATED",
+          "approvedBy": "elena.vance@baron-nexus.io"
+        },
+        {
+          "id": "ca-2",
+          "actionTitle": "Rotate Temporary OAuth2 Signing Keys & Revoke Active Sessions for Tenant Cohort B",
+          "impactLevel": "DISRUPTIVE_REQUIRES_APPROVAL",
+          "approvalStatus": "PENDING_APPROVAL"
+        }
+      ],
+      "playbookName": "PB-API-04: API Authorization Bypass Containment & Key Rotation",
+      "recoveryChecklist": [
+        {
+          "id": "rc-1",
+          "step": "Preserve Envoy access logs and compute SHA-256 chain of custody",
+          "completed": true
+        },
+        {
+          "id": "rc-2",
+          "step": "Apply OPA VirtualPatch rule in staging and verify zero regression",
+          "completed": true
+        },
+        {
+          "id": "rc-3",
+          "step": "Approve and execute disruptive token cohort rotation if unauthorized access confirmed",
+          "completed": false
+        },
+        {
+          "id": "rc-4",
+          "step": "Execute retest assessment job to verify fnd-1001 closure",
+          "completed": false
+        }
+      ],
+      "isSynthetic": true,
+      "createdAt": "2026-10-29T06:45:00.000Z",
+      "updatedAt": "2026-10-29T07:30:00.000Z"
+    }
+  ],
+  "labScenarios": [
+    {
+      "id": "lab-7001",
+      "projectId": "proj-purple-range",
+      "name": "Scenario Alpha: Benign OAuth2 Scope Boundary Replay & SIEM Rule Validation",
+      "mitreMapping": "T1550.001 (Use Alternate Authentication Material: Application Access Token)",
+      "labEnvironment": "Isolated Range Enclave (192.168.200.0/24)",
+      "syntheticTarget": "sim-web-target.range.baron-lab.local",
+      "executionStatus": "SIMULATED",
+      "preconditions": [
+        "Target must reside inside isolated 192.168.200.0/24 laboratory subnet",
+        "Synthetic test principals merch_lab_01 and merch_lab_02 pre-seeded with non-production dummy records",
+        "Envoy telemetry forwarder connected to rule-501 test harness"
+      ],
+      "benignTestSteps": [
+        "Emit 8 benign HTTP GET requests using synthetic token merch_lab_01 against synthetic resource merch_lab_02",
+        "Verify Envoy OPA filter logs telemetry event with synthetic_marker=true",
+        "Confirm SIEM detection rule-501 triggers within 60-second SLA"
+      ],
+      "expectedEvents": [
+        "envoy.access_log HTTP 403/200 cross-tenant telemetry record",
+        "opa.decision_log policy mismatch"
+      ],
+      "expectedDetections": [
+        "rule-501: Cross-Tenant Settlement ID Enumeration Spike"
+      ],
+      "observedOutcomes": [
+        "SIEM rule-501 fired in 18 seconds (100% match)",
+        "OPA VirtualPatch blocked requests 6-8 when switched to enforce mode"
+      ],
+      "detectionCoveragePercent": 100,
+      "cleanupStatus": "CLEANED_VERIFIED",
+      "lastExecutedAt": "2026-10-28T16:30:00.000Z",
+      "logs": [
+        "[2026-10-28T16:29:50Z] Precondition check passed: target sim-web-target.range.baron-lab.local in isolated lab scope.",
+        "[2026-10-28T16:29:55Z] Executed 8 benign synthetic GET requests (no real credentials or payloads used).",
+        "[2026-10-28T16:30:13Z] Observed detection rule-501 trigger. Ephemeral lab tokens purged."
+      ]
+    },
+    {
+      "id": "lab-7002",
+      "projectId": "proj-purple-range",
+      "name": "Scenario Beta: Cloud IAM Control-Plane Discovery Telemetry Check",
+      "mitreMapping": "T1580 (Cloud Infrastructure Discovery)",
+      "labEnvironment": "LocalStack Synthetic Cloud Emulation",
+      "syntheticTarget": "sim-ad-dc01.range.baron-lab.local",
+      "executionStatus": "SIMULATED",
+      "preconditions": [
+        "Isolated LocalStack mock AWS endpoint only (no live cloud credentials)",
+        "CloudTrail mock stream routed to rule-502 validator"
+      ],
+      "benignTestSteps": [
+        "Invoke mock DescribeDBSnapshots call against LocalStack container",
+        "Evaluate CloudTrail normalization and rule-502 alert enrichment"
+      ],
+      "expectedEvents": [
+        "aws.cloudtrail DescribeDBSnapshots synthetic event"
+      ],
+      "expectedDetections": [
+        "rule-502: Unexpected AWS RDS Snapshot Enumeration"
+      ],
+      "observedOutcomes": [
+        "Rule-502 matched normalized event and attached asset context ast-05"
+      ],
+      "detectionCoveragePercent": 100,
+      "cleanupStatus": "CLEANED_VERIFIED",
+      "lastExecutedAt": "2026-10-28T17:10:00.000Z",
+      "logs": [
+        "[2026-10-28T17:09:40Z] Verified isolated LocalStack endpoint.",
+        "[2026-10-28T17:10:02Z] Detection rule-502 validated. Cleanup verified."
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep-8001",
+      "projectId": "proj-sovereign-cloud",
+      "title": "Q4 Executive & Technical Assurance Report — Sovereign Core Banking",
+      "reportType": "EXECUTIVE_SUMMARY",
+      "generatedBy": "elena.vance@baron-nexus.io",
+      "generatedAt": "2026-10-29T08:30:00.000Z",
+      "status": "READY",
+      "scopeSummary": "Authorized under RoE #2026-09 covering *.baron-corp.internal, *.api.baron-financial.io, and 10.24.0.0/16. Excluded swift-hsm-prod.baron-corp.internal.",
+      "methodology": "Evidence-based passive reconnaissance, non-destructive API authorization boundary verification, and Kubernetes/Cloud IAM configuration inspection.",
+      "executiveSummary": "Across 6 inventoried assets in Sovereign Core Banking, 3 findings have been verified with cryptographic evidence and 2 remain unverified candidates requiring validation. Immediate remediation is focused on fnd-1001 (API OAuth2 tenant boundary) and fnd-1002 (IAM wildcard permissions).",
+      "verifiedFindingsCount": 3,
+      "unverifiedHypothesesCount": 2,
+      "includesSyntheticData": true,
+      "sections": [
+        {
+          "heading": "1. Scope & Authorization Attestation",
+          "content": "All assessment operations were validated server-side against Scope ID scope-sovereign-prod (ACTIVE). Explicit exclusions (swift-hsm-prod.baron-corp.internal) were strictly respected with zero active packets sent to excluded hosts."
+        },
+        {
+          "heading": "2. Confirmed Findings vs. Unverified Candidates",
+          "content": "Confirmed Findings (3): fnd-1001 (Critical, CVSS 9.1, BOLA on /v2/settlements), fnd-1002 (High, CVSS 7.8, IAM wildcard Describe), fnd-1003 (Medium, K8s readOnlyRootFilesystem). Unverified Candidates (2): fnd-1004 (Low, COOP header on /docs), fnd-1005 (High candidate, CVE-2024-45337 in sidecar SBOM pending reachability check)."
+        },
+        {
+          "heading": "3. Attack-Path Choke Points & Prioritized Remediation",
+          "content": "Graph analysis identified IAM Role prod-payment-worker-sa (gn-iam-sa) and EKS worker mesh (gn-k8s-worker) as primary choke points between internet-facing API gateways and the Core Settlement PostgreSQL Cluster. Enforcing tenant claim binding at Envoy and scoping IAM policies breaks 100% of observed high-risk paths."
+        }
+      ],
+      "limitations": [
+        "Demonstration dataset records are explicitly marked [SYNTHETIC_DEMO].",
+        "Potentially destructive checks were disabled by policy throughout the assessment window."
+      ]
+    }
+  ],
+  "integrations": [
+    {
+      "id": "int-gemini",
+      "name": "Google Gemini Server-Side Security Copilot",
+      "category": "AI_ENGINE",
+      "providerKey": "google-genai-server",
+      "enabled": true,
+      "connectionStatus": "CONNECTED_VERIFIED",
+      "endpointUrl": "https://generativelanguage.googleapis.com",
+      "secretEnvVarName": "GEMINI_API_KEY",
+      "secretConfiguredInEnv": true,
+      "lastSyncAt": "2026-10-29T09:00:00.000Z",
+      "lastDiagnosticMessage": "Server-side @google/genai SDK initialized with GEMINI_API_KEY. Zero client key exposure.",
+      "supportedOperations": [
+        "explainFinding",
+        "summarizeAssessment",
+        "analyzeAttackPath",
+        "draftRemediationPlan"
+      ]
+    },
+    {
+      "id": "int-misp",
+      "name": "MISP Threat Intelligence Taxonomic Feed",
+      "category": "THREAT_INTEL",
+      "providerKey": "misp-rest-adapter",
+      "enabled": true,
+      "connectionStatus": "SIMULATED_MODE",
+      "endpointUrl": "https://misp.example-soc.org/attributes/restSearch",
+      "secretEnvVarName": "MISP_API_KEY_REF",
+      "secretConfiguredInEnv": false,
+      "lastSyncAt": "2026-10-29T06:00:00.000Z",
+      "lastDiagnosticMessage": "External MISP credentials not provisioned in container env. Operating in safe offline demonstration mode with STIX/MISP JSON import/export enabled.",
+      "supportedOperations": [
+        "importMispBundle",
+        "exportIocs",
+        "correlateAssetIndicators"
+      ]
+    },
+    {
+      "id": "int-sarif-scanner",
+      "name": "SARIF / CycloneDX Vulnerability & SBOM Ingestion Engine",
+      "category": "VULN_SCANNER",
+      "providerKey": "sarif-normalizer-v2",
+      "enabled": true,
+      "connectionStatus": "CONNECTED_VERIFIED",
+      "endpointUrl": "internal://sarif-normalizer",
+      "secretEnvVarName": "NONE_REQUIRED",
+      "secretConfiguredInEnv": true,
+      "lastSyncAt": "2026-10-29T08:45:00.000Z",
+      "lastDiagnosticMessage": "Local schema-validated SARIF 2.1.0 & CycloneDX parser active and verified.",
+      "supportedOperations": [
+        "importSarif",
+        "deduplicateFindings",
+        "verifyEvidenceDigest"
+      ]
+    },
+    {
+      "id": "int-siem",
+      "name": "Enterprise SIEM & OpenTelemetry Event Bus Adapter",
+      "category": "SIEM_LOGGING",
+      "providerKey": "otel-siem-bridge",
+      "enabled": false,
+      "connectionStatus": "NOT_CONFIGURED",
+      "endpointUrl": "https://siem-ingest.baron-security.io:8443/v1/logs",
+      "secretEnvVarName": "SIEM_WEBHOOK_URL",
+      "secretConfiguredInEnv": false,
+      "lastDiagnosticMessage": "Requires external SIEM collector endpoint and mutual TLS client certificate. Outbound SSRF protection active.",
+      "supportedOperations": [
+        "streamNormalizedAlerts",
+        "syncDetectionRules"
+      ]
+    },
+    {
+      "id": "int-cloud-cfg",
+      "name": "Multi-Cloud Asset & Kubernetes State Importer",
+      "category": "CLOUD_INVENTORY",
+      "providerKey": "cloud-cspm-readonly",
+      "enabled": true,
+      "connectionStatus": "SIMULATED_MODE",
+      "endpointUrl": "https://sts.amazonaws.com",
+      "secretEnvVarName": "AWS_ROLE_ARN",
+      "secretConfiguredInEnv": false,
+      "lastSyncAt": "2026-10-28T22:00:00.000Z",
+      "lastDiagnosticMessage": "Operating with synthetic cloud/Kubernetes posture snapshots. Configure read-only IAM AssumeRole ARN for live cloud sync.",
+      "supportedOperations": [
+        "inspectK8sManifests",
+        "auditIamPolicies",
+        "importVpcFlowGraph"
+      ]
+    }
+  ],
+  "plugins": [
+    {
+      "id": "plg-openapi-boundary",
+      "name": "OpenAPI 3.1 Authorization Boundary Inspector",
+      "version": "1.4.2",
+      "author": "Baron Security Engineering",
+      "platformVersion": ">=1.0.0",
+      "description": "Validates OpenAPI specifications for missing security schemes, unauthenticated routes, and BOLA/IDOR parameter patterns without destructive payloads.",
+      "capabilities": [
+        "API_SCHEMA_VALIDATION",
+        "PASSIVE_HEADER_CHECK"
+      ],
+      "permissionsRequested": [
+        "asset:read",
+        "finding:update_status"
+      ],
+      "requiredSecrets": [],
+      "installed": true,
+      "enabled": true,
+      "isolationMode": "WORKER_SANDBOX",
+      "executionLimits": {
+        "timeoutMs": 15000,
+        "memoryMb": 128,
+        "rateLimitPerMin": 30
+      },
+      "healthStatus": "HEALTHY"
+    },
+    {
+      "id": "plg-k8s-kyverno-audit",
+      "name": "Kubernetes PodSecurity & Kyverno Policy Auditor",
+      "version": "2.1.0",
+      "author": "Baron Cloud Native Team",
+      "platformVersion": ">=1.0.0",
+      "description": "Evaluates Kubernetes workload manifests against PSS Restricted profile, checking root filesystem mutability, privileged flags, and hostNetwork usage.",
+      "capabilities": [
+        "K8S_MANIFEST_AUDIT",
+        "SARIF_EXPORT"
+      ],
+      "permissionsRequested": [
+        "asset:read",
+        "finding:read"
+      ],
+      "requiredSecrets": [],
+      "installed": true,
+      "enabled": true,
+      "isolationMode": "DECLARATIVE_SCHEMA_ONLY",
+      "executionLimits": {
+        "timeoutMs": 10000,
+        "memoryMb": 64,
+        "rateLimitPerMin": 60
+      },
+      "healthStatus": "HEALTHY"
+    },
+    {
+      "id": "plg-tls-ct-monitor",
+      "name": "TLS Cipher & Certificate Transparency Drift Analyzer",
+      "version": "1.2.5",
+      "author": "Baron Cryptography Assurance",
+      "platformVersion": ">=1.0.0",
+      "description": "Monitors certificate expiration windows, weak cipher suites, and unexpected subdomain issuance in Certificate Transparency logs.",
+      "capabilities": [
+        "TLS_METADATA_CHECK",
+        "CT_LOG_CORRELATION"
+      ],
+      "permissionsRequested": [
+        "asset:read"
+      ],
+      "requiredSecrets": [],
+      "installed": true,
+      "enabled": true,
+      "isolationMode": "WORKER_SANDBOX",
+      "executionLimits": {
+        "timeoutMs": 20000,
+        "memoryMb": 128,
+        "rateLimitPerMin": 20
+      },
+      "healthStatus": "HEALTHY"
+    },
+    {
+      "id": "plg-misp-stix-enricher",
+      "name": "STIX 2.1 / MISP Indicator Contextual Enricher",
+      "version": "1.0.8",
+      "author": "Baron Threat Intel Unit",
+      "platformVersion": ">=1.0.0",
+      "description": "Correlates imported STIX 2.1 and MISP indicators against scoped project assets with strict prompt-injection sanitization.",
+      "capabilities": [
+        "IOC_CORRELATION",
+        "STIX_IMPORT"
+      ],
+      "permissionsRequested": [
+        "asset:read",
+        "finding:read"
+      ],
+      "requiredSecrets": [
+        "MISP_API_KEY_REF"
+      ],
+      "installed": true,
+      "enabled": false,
+      "isolationMode": "WORKER_SANDBOX",
+      "executionLimits": {
+        "timeoutMs": 15000,
+        "memoryMb": 128,
+        "rateLimitPerMin": 15
+      },
+      "healthStatus": "DISABLED"
+    }
+  ],
+  "auditLog": [
+    {
+      "id": "aud-0001",
+      "sequenceNumber": 1,
+      "timestamp": "2026-10-24T13:55:00.000Z",
+      "actorId": "usr-admin-01",
+      "actorEmail": "elena.vance@baron-nexus.io",
+      "actorRole": "PLATFORM_ADMIN",
+      "projectId": "proj-sovereign-cloud",
+      "category": "SCOPE",
+      "action": "SCOPE_SIGNED_OFF",
+      "outcome": "ALLOWED",
+      "targetResource": "scope-sovereign-prod",
+      "details": "Signed off RoE #2026-09 with explicit exclusion of swift-hsm-prod.baron-corp.internal.",
+      "prevHash": "GENESIS_00000000000000000000000000000000",
+      "entryHash": "4c69f09c8c17489fe6b51a9dc57d23d568c47f6e7c3461a1cb19bf834b520720"
+    },
+    {
+      "id": "aud-0002",
+      "sequenceNumber": 2,
+      "timestamp": "2026-10-24T14:05:00.000Z",
+      "actorId": "usr-admin-01",
+      "actorEmail": "elena.vance@baron-nexus.io",
+      "actorRole": "PLATFORM_ADMIN",
+      "projectId": "proj-sovereign-cloud",
+      "category": "ASSESSMENT",
+      "action": "ASSESSMENT_JOB_APPROVED",
+      "outcome": "ALLOWED",
+      "targetResource": "job-2001",
+      "details": "Approved non-destructive API boundary verification job-2001 after server-side scope check.",
+      "prevHash": "4c69f09c8c17489fe6b51a9dc57d23d568c47f6e7c3461a1cb19bf834b520720",
+      "entryHash": "bfddf1359d9ab141b7d9ec95cd13f94a73ef8b405969e6b9d76396e5d66063fb"
+    },
+    {
+      "id": "aud-0003",
+      "sequenceNumber": 3,
+      "timestamp": "2026-10-26T11:18:00.000Z",
+      "actorId": "usr-pentest-03",
+      "actorEmail": "tariq.almansoor@baron-nexus.io",
+      "actorRole": "PENETRATION_TESTER",
+      "projectId": "proj-sovereign-cloud",
+      "category": "SCOPE",
+      "action": "ASSESSMENT_TARGET_REJECTED",
+      "outcome": "DENIED_OUT_OF_SCOPE",
+      "targetResource": "swift-hsm-prod.baron-corp.internal",
+      "details": "Server-side scope validator blocked assessment request targeting explicitly excluded HSM host.",
+      "prevHash": "bfddf1359d9ab141b7d9ec95cd13f94a73ef8b405969e6b9d76396e5d66063fb",
+      "entryHash": "9d3b7db82421e8767e0988ae0937eeff94df877f9d614b8aa3cb7dd7b0275bea"
+    },
+    {
+      "id": "aud-0004",
+      "sequenceNumber": 4,
+      "timestamp": "2026-10-29T06:45:00.000Z",
+      "actorId": "usr-analyst-04",
+      "actorEmail": "sophia.chen@baron-nexus.io",
+      "actorRole": "SECURITY_ANALYST",
+      "projectId": "proj-sovereign-cloud",
+      "category": "INCIDENT",
+      "action": "INCIDENT_ESCALATED",
+      "outcome": "ALLOWED",
+      "targetResource": "inc-6001",
+      "details": "Escalated alert alt-5001 to Incident INC-2026-041 and linked evidence ev-3001.",
+      "prevHash": "9d3b7db82421e8767e0988ae0937eeff94df877f9d614b8aa3cb7dd7b0275bea",
+      "entryHash": "fabefd50c9a4e0bd05d446c3a3ca3d3fab4afad4423db954dfd138a89e4e0fa8"
+    },
+    {
+      "id": "aud-0005-mvtd04vl",
+      "sequenceNumber": 5,
+      "timestamp": "2026-10-29T09:47:02.961Z",
+      "actorId": "usr-admin-01",
+      "actorEmail": "elena.vance@baron-nexus.io",
+      "actorRole": "PLATFORM_ADMIN",
+      "projectId": "proj-sovereign-cloud",
+      "category": "SCOPE",
+      "action": "ASSESSMENT_REJECTED_OUT_OF_SCOPE",
+      "outcome": "DENIED_OUT_OF_SCOPE",
+      "targetResource": "swift-hsm-prod.baron-corp.internal",
+      "details": "Server-side scope validator rejected assessment request: swift-hsm-prod.baron-corp.internal (Target \"swift-hsm-prod.baron-corp.internal\" matches explicit scope exclusion rule \"swift-hsm-prod.baron-corp.internal\".)",
+      "prevHash": "fabefd50c9a4e0bd05d446c3a3ca3d3fab4afad4423db954dfd138a89e4e0fa8",
+      "entryHash": "f3a2496d44ec5dd34301674c6c8053540099f51162d150eee70e9cb21609c280"
+    }
+  ],
+  "aiConversations": {
+    "proj-sovereign-cloud": [
+      {
+        "id": "ai-msg-1",
+        "role": "assistant",
+        "content": "Baron Nexus AI Security Copilot ready. Operating within authorized project **Sovereign Core Banking & API Gateway Assurance (BNX-2026-FIN)**. All analysis is grounded in verified assessment records (`fnd-1001`, `fnd-1002`, `fnd-1003`) and SHA-256 evidence artifacts (`ev-3001`–`ev-3004`). Unverified candidates (`fnd-1004`, `fnd-1005`) are explicitly separated from confirmed vulnerabilities.",
+        "timestamp": "2026-10-29T08:00:00.000Z",
+        "referencedFindingIds": [
+          "fnd-1001",
+          "fnd-1002",
+          "fnd-1003"
+        ],
+        "referencedAssetIds": [
+          "ast-01",
+          "ast-05",
+          "ast-04"
+        ],
+        "referencedEvidenceIds": [
+          "ev-3001",
+          "ev-3002"
+        ],
+        "confidenceNote": "Grounded in 3 verified findings and 4 evidence records.",
+        "modelUsed": "baron-copilot-grounded"
+      }
+    ]
+  }
+}
